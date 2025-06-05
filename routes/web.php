@@ -7,6 +7,7 @@ use App\Http\Controllers\BloqueController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ReporteController;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -22,12 +23,7 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+    return Redirect::route('login');
 });
 
 Route::middleware([
@@ -35,9 +31,6 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
 
     Route::get('/formulario', [FormularioController::class, 'index'])->name('formulario');
     Route::post('/formulario/store', [FormularioController::class, 'store'])->name('formulario.store');

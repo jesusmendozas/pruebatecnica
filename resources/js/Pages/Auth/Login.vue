@@ -40,8 +40,10 @@ onMounted(() => {
     <Head title="COTECMAR - Sistema de Acceso" />
 
     <div class="min-h-screen bg-slate-50">
+        <!-- Header con patrón naval -->
         <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900"></div>
-
+        
+        <!-- Patrón de fondo sutil -->
         <div class="absolute inset-0 opacity-30">
             <svg width="60" height="60" viewBox="0 0 60 60" class="absolute inset-0 w-full h-full">
                 <defs>
@@ -59,18 +61,22 @@ onMounted(() => {
             <div class="w-full max-w-6xl">
                 <div class="bg-white shadow-2xl border border-slate-200 overflow-hidden">
                     <div class="flex min-h-[600px]">
+                        <!-- Panel izquierdo - Branding COTECMAR -->
                         <div class="hidden lg:flex lg:w-2/3 bg-gradient-to-br from-slate-800 to-slate-900 relative">
+                            <!-- Elemento decorativo naval -->
                             <div class="absolute inset-0 bg-gradient-to-r from-blue-900/20 to-transparent"></div>
-
+                            
+                            <!-- Líneas decorativas -->
                             <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-400 to-transparent"></div>
                             <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-400 to-transparent"></div>
-
+                            
                             <div class="relative z-10 flex flex-col justify-center px-16 py-12 text-white">
+                                <!-- Logo COTECMAR -->
                                 <div class="mb-12">
                                     <div class="w-20 h-20 bg-white rounded-lg shadow-xl flex items-center justify-center mb-6">
-                                        <img
-                                            src="https://www.cotecmar.com/sites/default/files/media/imagenes/2023-12/CotecmarLogo.png"
-                                            alt="COTECMAR"
+                                        <img 
+                                            src="https://www.cotecmar.com/sites/default/files/media/imagenes/2023-12/CotecmarLogo.png" 
+                                            alt="COTECMAR" 
                                             class="w-16 h-16 object-contain"
                                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"
                                         />
@@ -83,19 +89,24 @@ onMounted(() => {
                                     </h1>
                                     <div class="w-24 h-1 bg-blue-400 mb-6"></div>
                                     <p class="text-slate-300 text-lg leading-relaxed">
-                                        Corporación de Ciencia y Tecnología para el Desarrollo
+                                        Corporación de Ciencia y Tecnología para el Desarrollo 
                                         de la Industria Naval, Marítima y Fluvial
                                     </p>
                                 </div>
+
+                                <!-- Características del sistema -->
+                                
                             </div>
                         </div>
 
+                        <!-- Panel derecho - Formulario de acceso -->
                         <div class="w-full lg:w-1/3 bg-white flex flex-col">
+                            <!-- Header del formulario -->
                             <div class="px-8 py-6 bg-slate-50 border-b border-slate-200">
                                 <div class="lg:hidden mb-4">
-                                    <img
-                                        src="https://www.cotecmar.com/sites/default/files/media/imagenes/2023-12/CotecmarLogo.png"
-                                        alt="COTECMAR"
+                                    <img 
+                                        src="https://www.cotecmar.com/sites/default/files/media/imagenes/2023-12/CotecmarLogo.png" 
+                                        alt="COTECMAR" 
                                         class="w-12 h-12 object-contain mx-auto"
                                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"
                                     />
@@ -111,7 +122,9 @@ onMounted(() => {
                                 </p>
                             </div>
 
+                            <!-- Formulario -->
                             <div class="flex-1 px-8 py-8">
+                                <!-- Mensaje de estado -->
                                 <div v-if="status" class="mb-6 p-4 bg-emerald-50 border border-emerald-200 rounded-lg">
                                     <div class="flex items-center">
                                         <div class="w-4 h-4 bg-emerald-500 rounded-full mr-3"></div>
@@ -120,6 +133,7 @@ onMounted(() => {
                                 </div>
 
                                 <form @submit.prevent="submit" class="space-y-6">
+                                    <!-- Campo Usuario -->
                                     <div>
                                         <label for="usuario" class="block text-sm font-semibold text-slate-700 mb-2 uppercase tracking-wide">
                                             Usuario Corporativo
@@ -144,6 +158,7 @@ onMounted(() => {
                                         <InputError class="mt-2 text-sm text-red-600" :message="form.errors.usuario" />
                                     </div>
 
+                                    <!-- Campo Contraseña -->
                                     <div>
                                         <label for="password" class="block text-sm font-semibold text-slate-700 mb-2 uppercase tracking-wide">
                                             Contraseña
@@ -167,6 +182,7 @@ onMounted(() => {
                                         <InputError class="mt-2 text-sm text-red-600" :message="form.errors.password" />
                                     </div>
 
+                                    <!-- Opciones adicionales -->
                                     <div class="flex items-center justify-between">
                                         <label class="flex items-center">
                                             <input
@@ -186,6 +202,7 @@ onMounted(() => {
                                         </Link>
                                     </div>
 
+                                    <!-- Botón de acceso -->
                                     <button
                                         type="submit"
                                         :disabled="form.processing"
@@ -208,6 +225,7 @@ onMounted(() => {
                                 </form>
                             </div>
 
+                            <!-- Footer -->
                             <div class="px-8 py-4 bg-slate-50 border-t border-slate-200">
                                 <div class="flex items-center justify-between text-xs text-slate-500">
                                     <span>© 2025 COTECMAR</span>
@@ -223,6 +241,7 @@ onMounted(() => {
 </template>
 
 <style scoped>
+/* Animaciones específicas para el contexto militar/naval */
 @keyframes secure-fade-in {
     from {
         opacity: 0;
@@ -238,10 +257,12 @@ onMounted(() => {
     animation: secure-fade-in 0.6s ease-out;
 }
 
+/* Efectos de focus más definidos para ambiente corporativo */
 input:focus {
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
+/* Estilos específicos para el logo */
 .logo-container {
     background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
 }

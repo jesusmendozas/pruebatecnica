@@ -26,6 +26,6 @@ Route::middleware(['auth:sanctum', 'web'])->group(function () {
     Route::apiResource('usuarios', UsuarioController::class);
     Route::apiResource('proyectos', ProyectoController::class);
     Route::apiResource('bloques', BloqueController::class);
-    Route::post('/formulario', [FormularioController::class, 'store'])
-        ->name('formulario.store');
+    // Route::post('/formulario', [FormularioController::class, 'store'])
+    //     ->name('formulario.store');
 });
