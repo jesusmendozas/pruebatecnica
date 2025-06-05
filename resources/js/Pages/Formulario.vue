@@ -136,15 +136,9 @@ const registrarPieza = async () => {
 
         <div class="min-h-screen bg-gradient-to-br from-slate-50 to-cyan-50 py-8 px-4">
             <div class="max-w-6xl mx-auto">
-                <!-- Header -->
-                <div class="text-center mb-8 transform transition-all duration-700 ease-out animate-fade-in">
-                    <h1 class="text-4xl font-bold text-slate-800 mb-2">Registro de Piezas</h1>
-                    <p class="text-slate-600">Gestiona y registra el peso de las piezas de tus proyectos</p>
-                </div>
 
-                <!-- Main Form Card -->
+
                 <div class="bg-white rounded-2xl shadow-xl overflow-hidden transform transition-all duration-500 hover:shadow-2xl">
-                    <!-- Card Header -->
                     <div class="bg-gradient-to-r from-cyan-600 to-teal-700 px-8 py-6">
                         <h2 class="text-2xl font-semibold text-white flex items-center">
                             <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -160,7 +154,7 @@ const registrarPieza = async () => {
                             <!-- Proyecto Select -->
                             <div class="transform transition-all duration-300 hover:scale-105">
                                 <label for="proyecto" class="block text-sm font-semibold text-slate-700 mb-3">
-                                    📋 Proyecto
+                                    Proyecto
                                 </label>
                                 <div class="relative">
                                     <select
@@ -189,7 +183,7 @@ const registrarPieza = async () => {
                             <!-- Bloque Select -->
                             <div class="transform transition-all duration-300 hover:scale-105">
                                 <label for="bloque" class="block text-sm font-semibold text-slate-700 mb-3">
-                                    🏗️ Bloque
+                                    Bloque
                                 </label>
                                 <div class="relative">
                                     <select
@@ -219,7 +213,7 @@ const registrarPieza = async () => {
                             <!-- Pieza Select -->
                             <div class="transform transition-all duration-300 hover:scale-105">
                                 <label for="pieza" class="block text-sm font-semibold text-slate-700 mb-3">
-                                    🔧 Pieza
+                                    Pieza
                                 </label>
                                 <div class="relative">
                                     <select
