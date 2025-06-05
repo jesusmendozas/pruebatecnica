@@ -1,6 +1,11 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FormularioController;
+use App\Http\Controllers\ProyectoController;
+use App\Http\Controllers\BloqueController;
+use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\ReporteController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -30,6 +35,16 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/formulario', [FormularioController::class, 'index'])
-        ->name('formulario');
+    Route::get('/dashboard', function () {
+        return Inertia::render('Dashboard');
+    })->name('dashboard');
+
+    Route::get('/formulario', function () {
+        return Inertia::render('Formulario');
+    })->name('formulario');
+
+    Route::get('/proyectos', [ProyectoController::class, 'index'])->name('proyectos');
+    Route::get('/bloques', [BloqueController::class, 'index'])->name('bloques');
+    Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios');
+    Route::get('/reportes', [ReporteController::class, 'index'])->name('reportes');
 });

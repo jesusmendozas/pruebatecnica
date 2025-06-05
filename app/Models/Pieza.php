@@ -11,19 +11,15 @@ class Pieza extends Model
 
 
     protected $fillable = [
-        'IdPieza',      
-        'pieza',         
-        'peso_teorico',  
-        'peso_real',     
-        'estado',        
-        'IDBloque',     
+        'IdPieza',
+        'pieza',
+        'peso_teorico',
+        'peso_real',
+        'estado', 
+        'IDBloque',
         'fecha_registro',
         'registrado_por',
     ];
-
-    protected $primaryKey = 'id_pieza'; 
-    public $incrementing = false;
-    protected $keyType = 'string';
 
     public function bloque()
     {

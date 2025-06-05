@@ -8,17 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class Proyecto extends Model
 {
     use HasFactory;
+
+    protected $primaryKey = 'IDproyecto';
     public $incrementing = false;
     protected $keyType = 'string';
+    public $timestamps = false;
 
     protected $fillable = [
-        'IDproyecto', 
-        'nombre',  
+        'IDproyecto',
+        'nombre',
     ];
 
     public function bloques()
     {
-        return $this->hasMany(Bloque::class, 'IDproyecto', 'IDproyecto'); 
+        return $this->hasMany(Bloque::class, 'IDproyecto', 'IDproyecto');
     }
 
 }

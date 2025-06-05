@@ -51,6 +51,18 @@ const logout = () => {
                                 <NavLink :href="route('formulario')" :active="route().current('formulario')">
                                     Formulario
                                 </NavLink>
+                                <NavLink :href="route('proyectos')" :active="route().current('proyectos')">
+                                    Proyectos
+                                </NavLink>
+                                <NavLink :href="route('bloques')" :active="route().current('bloques')">
+                                    Bloques
+                                </NavLink>
+                                <NavLink :href="route('usuarios')" :active="route().current('usuarios')">
+                                    Usuarios
+                                </NavLink>
+                                <NavLink :href="route('reportes')" :active="route().current('reportes')">
+                                    Reportes
+                                </NavLink>
                             </div>
                         </div>
 
@@ -193,6 +205,18 @@ const logout = () => {
                     <div class="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink :href="route('formulario')" :active="route().current('formulario')">
                             Formulario
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('proyectos')" :active="route().current('proyectos')">
+                            Proyectos
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('bloques')" :active="route().current('bloques')">
+                            Bloques
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('usuarios')" :active="route().current('usuarios')">
+                            Usuarios
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('reportes')" :active="route().current('reportes')">
+                            Reportes
                         </ResponsiveNavLink>
                     </div>
 

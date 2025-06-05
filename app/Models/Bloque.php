@@ -9,8 +9,10 @@ class Bloque extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'IDBloque';
     public $incrementing = false;
     protected $keyType = 'string';
+    public $timestamps = false;
 
     protected $fillable = [
         'IDBloque',
@@ -25,6 +27,6 @@ class Bloque extends Model
 
     public function piezas()
     {
-        return $this->hasMany(Pieza::class, 'IdPieza', 'IDBloque');
+        return $this->hasMany(Pieza::class, 'IDBloque', 'IDBloque');
     }
 }
