@@ -39,9 +39,7 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
 
-    Route::get('/formulario', function () {
-        return Inertia::render('Formulario');
-    })->name('formulario');
+    Route::get('/formulario', [FormularioController::class, 'index'])->name('formulario');
 
     Route::get('/proyectos', [ProyectoController::class, 'index'])->name('proyectos');
     Route::get('/bloques', [BloqueController::class, 'index'])->name('bloques');

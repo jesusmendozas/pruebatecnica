@@ -16,19 +16,27 @@ const selectedPieza = ref('');
 const pesoReal = ref('');
 const isSaving = ref(false);
 
+// Corregir la comparación para filtrar bloques
 const bloquesFiltrados = computed(() => {
     if (!selectedProyecto.value) return [];
-    return props.bloques.filter(bloque => String(bloque.IDproyecto) === String(selectedProyecto.value));
+    return props.bloques.filter(bloque =>
+        bloque.IDproyecto === selectedProyecto.value
+    );
 });
 
+// Corregir la comparación para filtrar piezas
 const piezasFiltradas = computed(() => {
     if (!selectedBloque.value) return [];
-    return props.piezas.filter(pieza => String(pieza.IDBloque) === String(selectedBloque.value));
+    return props.piezas.filter(pieza =>
+        pieza.IDBloque === selectedBloque.value
+    );
 });
 
 const piezaSeleccionada = computed(() => {
     if (!selectedPieza.value) return null;
-    const pieza = props.piezas.find(pieza => String(pieza.IdPieza) === String(selectedPieza.value));
+    const pieza = props.piezas.find(pieza =>
+        pieza.IdPieza === selectedPieza.value
+    );
     if (pieza && pieza.peso_real) {
         pesoReal.value = pieza.peso_real;
     }
@@ -74,13 +82,15 @@ const registrarPieza = async () => {
             return;
         }
 
+        isSaving.value = true;
+
         const data = {
             pieza_id: piezaSeleccionada.value.IdPieza,
             peso_real: pesoReal.value,
             usuario: props.usuario
         };
 
-        await router.post(route('formulario.registrar'), data);
+        await router.post(route('formulario.store'), data);
         alert('Pieza registrada exitosamente');
 
         // Limpiar el formulario
@@ -90,6 +100,8 @@ const registrarPieza = async () => {
         pesoReal.value = '';
     } catch (error) {
         alert('Error al registrar la pieza: ' + (error.message || 'Error desconocido'));
+    } finally {
+        isSaving.value = false;
     }
 };
 </script>

@@ -14,11 +14,14 @@ class FormularioController extends Controller
 {
     public function index()
     {
-
         $proyectos = Proyecto::all();
-        $bloques = Bloque::all();
+        $bloques = Bloque::with('proyecto')->get();
         $piezas = Pieza::all();
         $usuario = auth()->user();
+
+        // Debug
+        \Log::info('Proyectos:', ['data' => $proyectos->toArray()]);
+        \Log::info('Bloques:', ['data' => $bloques->toArray()]);
 
         return Inertia::render('Formulario', [
             'proyectos' => $proyectos,
@@ -26,7 +29,6 @@ class FormularioController extends Controller
             'piezas' => $piezas,
             'usuario' => $usuario
         ]);
-
     }
 
     public function store(Request $request)
