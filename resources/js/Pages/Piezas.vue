@@ -4,6 +4,7 @@ import { ref, computed } from 'vue';
 import { ChevronDown, Package, Building, Layers, Calendar, User, Weight, CheckCircle, Clock, Search, Filter, Plus, Edit, Trash2 } from 'lucide-vue-next';
 import { useForm } from '@inertiajs/vue3';
 import { router } from '@inertiajs/vue3';
+import { route } from '@inertiajs/vue3';
 
 const props = defineProps({
     piezas: Array,
@@ -54,7 +55,7 @@ const openDeleteModal = (pieza) => {
 };
 
 const submitCreate = () => {
-    createForm.post('/piezas', {
+    createForm.post(route('piezas.store'), {
         onSuccess: () => {
             showCreateModal.value = false;
             createForm.reset();
@@ -63,7 +64,7 @@ const submitCreate = () => {
 };
 
 const submitEdit = () => {
-    editForm.put(`/piezas/${selectedPieza.value.IdPieza}`, {
+    editForm.put(route('piezas.update', selectedPieza.value.IdPieza), {
         onSuccess: () => {
             showEditModal.value = false;
             selectedPieza.value = null;
@@ -72,7 +73,7 @@ const submitEdit = () => {
 };
 
 const submitDelete = () => {
-    router.delete(`/piezas/${selectedPieza.value.IdPieza}`, {
+    router.delete(route('piezas.destroy', selectedPieza.value.IdPieza), {
         onSuccess: () => {
             showDeleteModal.value = false;
             selectedPieza.value = null;

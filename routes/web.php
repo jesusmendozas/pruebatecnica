@@ -32,6 +32,9 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
+    Route::get('/dashboard', function () {
+        return Inertia::render('Dashboard');
+    })->name('dashboard');
 
     Route::get('/formulario', [FormularioController::class, 'index'])->name('formulario');
     Route::post('/formulario/store', [FormularioController::class, 'store'])->name('formulario.store');
@@ -42,5 +45,8 @@ Route::middleware([
     Route::get('/reportes', [ReporteController::class, 'index'])->name('reportes');
 
     // Piezas routes
-    Route::resource('piezas', PiezaController::class);
+    Route::get('/piezas', [PiezaController::class, 'index'])->name('piezas.index');
+    Route::post('/piezas', [PiezaController::class, 'store'])->name('piezas.store');
+    Route::put('/piezas/{pieza}', [PiezaController::class, 'update'])->name('piezas.update');
+    Route::delete('/piezas/{pieza}', [PiezaController::class, 'destroy'])->name('piezas.destroy');
 });

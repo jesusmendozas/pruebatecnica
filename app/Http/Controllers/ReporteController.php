@@ -14,9 +14,7 @@ class ReporteController extends Controller
     {
         try {
             // Reporte de piezas pendientes por proyecto
-            $piezasPendientes = Proyecto::with(['bloques.piezas' => function($query) {
-                $query->where('estado', 'Pendiente');
-            }])
+            $piezasPendientes = Proyecto::with(['bloques.piezas'])
             ->get()
             ->map(function($proyecto) {
                 return [
@@ -32,7 +30,9 @@ class ReporteController extends Controller
                                     'nombre_pieza' => $pieza->pieza,
                                     'IDPieza' => $pieza->IdPieza,
                                     'peso_teorico' => $pieza->peso_teorico,
-                                    'estado' => $pieza->estado
+                                    'peso_real' => $pieza->peso_real,
+                                    'estado' => $pieza->estado,
+                                    'registrado_por' => $pieza->registrado_por,
                                 ];
                             })
                         ];
