@@ -8,17 +8,18 @@ const props = defineProps({
     usuarios: Array
 });
 
+
 const showModal = ref(false);
 const editingUsuario = ref(null);
 const formData = ref({
-    name: '',
+    usuario: '',
     password: '',
     password_confirmation: ''
 });
 
 const openCreateModal = () => {
     formData.value = {
-        name: '',
+        usuario: '',
         password: '',
         password_confirmation: ''
     };
@@ -28,7 +29,7 @@ const openCreateModal = () => {
 
 const openEditModal = (usuario) => {
     formData.value = {
-        name: usuario.name,
+        usuario: usuario.usuario,
         password: '',
         password_confirmation: ''
     };
@@ -39,7 +40,7 @@ const openEditModal = (usuario) => {
 const closeModal = () => {
     showModal.value = false;
     formData.value = {
-        name: '',
+        usuario: '',
         password: '',
         password_confirmation: ''
     };
@@ -114,7 +115,7 @@ const deleteUsuario = async (usuario) => {
                                 <tbody class="bg-white divide-y divide-gray-200">
                                     <tr v-for="usuario in usuarios" :key="usuario.id">
                                         <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm font-medium text-gray-900">{{ usuario.name }}</div>
+                                            <div class="text-sm font-medium text-gray-900">{{ usuario.usuario }}</div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <div class="text-sm text-gray-500">{{ new Date(usuario.created_at).toLocaleDateString() }}</div>
@@ -147,10 +148,10 @@ const deleteUsuario = async (usuario) => {
                     </h3>
                     <form @submit.prevent="saveUsuario">
                         <div class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="usuario">
                                 Usuario
                             </label>
-                            <input v-model="formData.name" type="text"
+                            <input v-model="formData.usuario" type="text"
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 required>
                         </div>

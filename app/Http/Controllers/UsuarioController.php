@@ -40,13 +40,12 @@ class UsuarioController extends Controller
     {
         try {
             $request->validate([
-                'name' => 'required|string|max:255|unique:users',
+                'usuario' => 'required|string|max:255|unique:usuarios',
                 'password' => ['required', 'confirmed', Rules\Password::defaults()],
             ]);
 
             $user = User::create([
-                'name' => $request->name,
-                'email' => $request->name . '@example.com',
+                'usuario' => $request->usuario,
                 'password' => Hash::make($request->password),
             ]);
 
@@ -76,11 +75,11 @@ class UsuarioController extends Controller
             $user = User::findOrFail($id);
 
             $request->validate([
-                'name' => 'required|string|max:255|unique:users,name,' . $id,
+                'usuario' => 'required|string|max:255|unique:usuarios,usuario,' . $id,
                 'password' => ['nullable', 'confirmed', Rules\Password::defaults()],
             ]);
 
-            $user->name = $request->name;
+            $user->usuario = $request->usuario;
             if ($request->filled('password')) {
                 $user->password = Hash::make($request->password);
             }
