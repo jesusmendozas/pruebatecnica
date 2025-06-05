@@ -24,7 +24,10 @@ const bloquesFiltrados = computed(() => {
 
 const piezasFiltradas = computed(() => {
     if (!selectedBloque.value) return [];
-    return props.piezas.filter(pieza => String(pieza.IDBloque) === String(selectedBloque.value));
+    return props.piezas.filter(pieza =>
+        String(pieza.IDBloque) === String(selectedBloque.value) &&
+        pieza.estado === 'Pendiente'
+    );
 });
 
 const piezaSeleccionada = computed(() => {

@@ -197,11 +197,17 @@ const deleteProyecto = async (proyecto) => {
                                                             <span class="font-medium text-slate-600 text-sm">Estado:</span>
                                                             <span :class="[
                                                                 'px-2 py-1 rounded-lg text-sm font-medium',
-                                                                pieza.estado === 'Fabricado'
+                                                                pieza.estado === 'Fabricada'
                                                                     ? 'bg-green-100 text-green-700'
                                                                     : 'bg-yellow-100 text-yellow-700'
                                                             ]">
                                                                 {{ pieza.estado || 'Pendiente' }}
+                                                            </span>
+                                                        </div>
+                                                        <div class="flex items-center gap-2">
+                                                            <span class="font-medium text-slate-600 text-sm">Registrado por:</span>
+                                                            <span class="px-2 py-1 bg-gradient-to-r from-cyan-100 to-teal-100 text-teal-700 rounded-lg text-sm font-medium">
+                                                                {{ pieza.registrado_por || 'No registrado' }}
                                                             </span>
                                                         </div>
                                                     </div>

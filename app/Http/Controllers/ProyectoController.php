@@ -12,15 +12,13 @@ class ProyectoController extends Controller
     public function index()
     {
         try {
-            $proyectos = Proyecto::with(['bloques.piezas' => function($query) {
-                $query->where('estado', 'Pendiente');
-            }])->get();
+            $proyectos = Proyecto::with(['bloques.piezas'])->get();
 
             return Inertia::render('Proyectos', [
                 'proyectos' => $proyectos
             ]);
         } catch (\Exception $e) {
-            return back()->with('error', 'Error al cargar los proyectos: ' . $e->getMessage());
+            return back()->with('error', 'Error al cargar los proyectos: ' + $e->getMessage());
         }
     }
 
