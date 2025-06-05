@@ -206,7 +206,7 @@ onMounted(() => {
                                     </h1>
                                     <p class="text-slate-600 text-sm mt-1">Monitoreo en tiempo real del estado de proyectos</p>
                                 </div>
-                                
+
                                 <!-- Búsqueda integrada en header -->
                                 <div class="flex gap-3">
                                     <div class="relative">
@@ -405,7 +405,7 @@ onMounted(() => {
                                                                     <span v-else-if="pieza.estado === 'Fabricada'" class="inline-block px-2 py-1 rounded-lg bg-gradient-to-r from-emerald-100 to-emerald-200 text-emerald-800 text-xs font-semibold border border-emerald-300">Fabricada</span>
                                                                     <span v-else class="inline-block px-2 py-1 rounded-lg bg-gradient-to-r from-slate-100 to-slate-200 text-slate-800 text-xs font-semibold border border-slate-300">{{ pieza.estado }}</span>
                                                                 </div>
-                                                                
+
                                                                 <div class="grid grid-cols-2 gap-3 text-xs text-slate-600">
                                                                     <div class="flex items-center">
                                                                         <svg class="w-3 h-3 mr-1 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -422,7 +422,7 @@ onMounted(() => {
                                                                         <span class="ml-1">{{ pieza.peso_real || 'N/A' }} kg</span>
                                                                     </div>
                                                                 </div>
-                                                                
+
                                                                 <div class="mt-2 text-xs text-slate-500 flex items-center">
                                                                     <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -443,7 +443,7 @@ onMounted(() => {
                             <div v-if="totalPages > 1" class="bg-gradient-to-r from-slate-50 to-cyan-50 px-6 py-4 border-t border-slate-200">
                                 <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
                                     <div class="text-sm text-slate-700 font-medium">
-                                        Mostrando {{ (currentPage - 1) * itemsPerPage + 1 }} - 
+                                        Mostrando {{ (currentPage - 1) * itemsPerPage + 1 }} -
                                         {{ Math.min(currentPage * itemsPerPage, filteredProyectos.length) }}
                                         de {{ filteredProyectos.length }} proyectos
                                     </div>
@@ -453,8 +453,8 @@ onMounted(() => {
                                             :key="page"
                                             @click="goToPage(page)"
                                             class="px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 transform hover:scale-105"
-                                            :class="page === currentPage 
-                                                ? 'bg-gradient-to-r from-cyan-500 to-teal-600 text-white shadow-lg' 
+                                            :class="page === currentPage
+                                                ? 'bg-gradient-to-r from-cyan-500 to-teal-600 text-white shadow-lg'
                                                 : 'bg-white text-slate-700 hover:bg-gradient-to-r hover:from-cyan-100 hover:to-teal-100 hover:text-cyan-700 border border-slate-300'"
                                         >
                                             {{ page }}
