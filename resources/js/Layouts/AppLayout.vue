@@ -134,10 +134,10 @@ onUnmounted(() => {
                                 </NavLink>
 
                                 <NavLink
-                                    :href="route('piezas.index')"
-                                    :active="route().current('piezas.index')"
+                                    :href="route('piezas')"
+                                    :active="route().current('piezas')"
                                     class="relative group px-4 py-2 rounded-xl font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg"
-                                    :class="route().current('piezas.index')
+                                    :class="route().current('piezas')
                                         ? 'text-white bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg shadow-blue-500/25'
                                         : 'text-gray-700 hover:text-gray-900 hover:bg-white/60'"
                                 >
@@ -346,10 +346,10 @@ onUnmounted(() => {
                             </ResponsiveNavLink>
 
                             <ResponsiveNavLink
-                                :href="route('piezas.index')"
-                                :active="route().current('piezas.index')"
+                                :href="route('piezas')"
+                                :active="route().current('piezas')"
                                 class="flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition-all duration-300"
-                                :class="route().current('piezas.index')
+                                :class="route().current('piezas')
                                     ? 'text-white bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg'
                                     : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50'"
                             >

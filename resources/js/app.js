@@ -23,8 +23,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
-    resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
+    resolve: (name) => {
+        console.log('Resolving page component:', name);
+        return resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue'));
+    },
     setup({ el, App, props, plugin }) {
+        console.log('Setting up Inertia app with props:', props);
         return createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue)

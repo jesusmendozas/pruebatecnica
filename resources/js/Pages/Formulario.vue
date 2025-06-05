@@ -139,8 +139,8 @@ const registrarPieza = async () => {
         <div class="min-h-screen bg-gradient-to-br from-slate-50 to-cyan-50 py-8 px-4">
             <div class="max-w-6xl mx-auto">
 
-
-                <div class="bg-white rounded-2xl shadow-xl overflow-hidden transform transition-all duration-500 hover:shadow-2xl">
+                <!-- Header con animación de entrada -->
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden transform transition-all duration-500 hover:shadow-2xl animate-fadeInDown">
                     <div class="bg-gradient-to-r from-cyan-600 to-teal-700 px-8 py-6">
                         <h2 class="text-2xl font-semibold text-white flex items-center">
                             <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -150,8 +150,8 @@ const registrarPieza = async () => {
                         </h2>
                     </div>
 
-                    <!-- Selection Form -->
-                    <div class="p-8">
+                    <!-- Selection Form con animación de entrada -->
+                    <div class="p-8 animate-fadeInUp">
                         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                             <!-- Proyecto Select -->
                             <div class="transform transition-all duration-300 hover:scale-105">
@@ -369,15 +369,48 @@ const registrarPieza = async () => {
 </template>
 
 <style scoped>
-@keyframes fade-in {
+/* Animaciones de entrada (copiadas de Proyectos.vue y Usuarios.vue) */
+@keyframes fadeInDown {
     from {
         opacity: 0;
-        transform: translateY(-20px);
+        transform: translateY(-30px);
     }
     to {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fadeInDown {
+    animation: fadeInDown 0.8s ease-out;
+}
+
+.animate-fadeInUp {
+    animation: fadeInUp 0.8s ease-out both;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.animate-fade-in {
+    animation: fade-in 0.6s ease-out;
 }
 
 @keyframes slide-up {
@@ -391,26 +424,23 @@ const registrarPieza = async () => {
     }
 }
 
-.animate-fade-in {
-    animation: fade-in 0.7s ease-out;
-}
-
 .animate-slide-up {
-    animation: slide-up 0.5s ease-out;
+    animation: slide-up 0.8s ease-out;
 }
 
-.animate-bounce {
-    animation: bounce 1s infinite;
-}
-
-@keyframes bounce {
-    0%, 100% {
-        transform: translateY(-5%);
-        animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
     }
-    50% {
+    to {
+        opacity: 1;
         transform: translateY(0);
-        animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
     }
+}
+
+.animate-fade-in-up {
+    animation: fade-in-up 0.5s ease-out forwards;
+    opacity: 0;
 }
 </style>

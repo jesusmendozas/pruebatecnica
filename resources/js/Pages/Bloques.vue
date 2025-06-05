@@ -165,7 +165,8 @@ const deleteBloque = async (bloque) => {
             <div class="container mx-auto px-4 py-8">
                 <div class="max-w-7xl mx-auto">
 
-                    <div class="flex flex-col md:flex-row gap-4 justify-center items-center mb-8">
+                    <!-- Header con animación de entrada -->
+                    <div class="flex flex-col md:flex-row gap-4 justify-center items-center mb-8 animate-fadeInDown">
 
                         <div class="relative group">
                             <input v-model="searchTerm" type="text" placeholder="Buscar bloques..."
@@ -202,7 +203,8 @@ const deleteBloque = async (bloque) => {
                         </button>
                     </div>
 
-                    <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+                    <!-- Grid/lista de bloques con animación de entrada -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 animate-fadeInUp">
                         <div v-for="bloque in filteredBloques" :key="bloque.IDBloque"
                             :class="[
                                 'group bg-white rounded-2xl shadow-md hover:shadow-xl transform transition-all duration-500 hover:scale-[1.02] border border-teal-100',
@@ -470,6 +472,81 @@ const deleteBloque = async (bloque) => {
 
 .animate-float {
     animation: float 3s ease-in-out infinite;
+}
+
+/* Animaciones de entrada (copiadas de Proyectos.vue y Usuarios.vue) */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fadeInDown {
+    animation: fadeInDown 0.8s ease-out;
+}
+
+.animate-fadeInUp {
+    animation: fadeInUp 0.8s ease-out both;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.animate-fade-in {
+    animation: fade-in 0.6s ease-out;
+}
+
+@keyframes slide-up {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-slide-up {
+    animation: slide-up 0.8s ease-out;
+}
+
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fade-in-up 0.5s ease-out forwards;
+    opacity: 0;
 }
 
 /* Efectos de hover */

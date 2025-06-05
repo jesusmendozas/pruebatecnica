@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pieza;
 use App\Models\Bloque;
+use Exception;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Log;
@@ -16,11 +17,18 @@ class PiezaController extends Controller
         try {
             $piezas = Pieza::with(['bloque.proyecto'])->get();
             $bloques = Bloque::with('proyecto')->get();
+            
+
+
             return Inertia::render('Piezas', [
                 'piezas' => $piezas,
                 'bloques' => $bloques
             ]);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
+            Log::error('Error al cargar las piezas: ' . $e->getMessage(), [
+                'exception' => $e,
+                'trace' => $e->getTraceAsString()
+            ]);
             return back()->with('error', 'Error al cargar las piezas: ' . $e->getMessage());
         }
     }
@@ -43,7 +51,7 @@ class PiezaController extends Controller
             ]);
 
             return redirect()->back()->with('success', 'Pieza creada exitosamente');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return back()->with('error', 'Error al crear la pieza: ' . $e->getMessage());
         }
     }
@@ -61,7 +69,7 @@ class PiezaController extends Controller
 
             $pieza->update($validated);
             return redirect()->back()->with('success', 'Pieza actualizada exitosamente');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return back()->with('error', 'Error al actualizar la pieza: ' . $e->getMessage());
         }
     }
@@ -71,7 +79,7 @@ class PiezaController extends Controller
         try {
             $pieza->delete();
             return redirect()->back()->with('success', 'Pieza eliminada exitosamente');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return back()->with('error', 'Error al eliminar la pieza: ' . $e->getMessage());
         }
     }

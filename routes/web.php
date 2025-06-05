@@ -44,9 +44,12 @@ Route::middleware([
     Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios');
     Route::get('/reportes', [ReporteController::class, 'index'])->name('reportes');
 
-    // Piezas routes
-    Route::get('/piezas', [PiezaController::class, 'index'])->name('piezas.index');
-    Route::post('/piezas', [PiezaController::class, 'store'])->name('piezas.store');
-    Route::put('/piezas/{pieza}', [PiezaController::class, 'update'])->name('piezas.update');
-    Route::delete('/piezas/{pieza}', [PiezaController::class, 'destroy'])->name('piezas.destroy');
+    Route::get('/piezas', [PiezaController::class, 'index'])
+        ->name('piezas');
+    Route::post('/piezas', [PiezaController::class, 'store'])
+        ->name('piezas.store');
+    Route::put('/piezas/{pieza}', [PiezaController::class, 'update'])
+        ->name('piezas.update');
+    Route::delete('/piezas/{pieza}', [PiezaController::class, 'destroy'])
+        ->name('piezas.destroy');
 });
