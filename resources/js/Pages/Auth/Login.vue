@@ -259,11 +259,34 @@ onMounted(() => {
 
 /* Efectos de focus más definidos para ambiente corporativo */
 input:focus {
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    box-shadow: 0 0 0 3px rgba(0, 112, 194, 0.1);
 }
 
 /* Estilos específicos para el logo */
 .logo-container {
-    background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+    background: linear-gradient(135deg, #005a9e 0%, #003f6d 100%);
+}
+
+/* Gradientes y fondos */
+.bg-navy-gradient {
+    background: linear-gradient(135deg, #0070c2 0%, #005a9e 100%);
+}
+
+.bg-navy-light {
+    background-color: #f0f7ff;
+}
+
+/* Botones */
+.btn-navy {
+    @apply bg-navy-600 hover:bg-navy-700 text-white transition-colors duration-200;
+}
+
+/* Bordes y sombras */
+.border-navy {
+    border-color: #0070c2;
+}
+
+.shadow-navy {
+    box-shadow: 0 4px 6px -1px rgba(0, 112, 194, 0.1), 0 2px 4px -1px rgba(0, 112, 194, 0.06);
 }
 </style>

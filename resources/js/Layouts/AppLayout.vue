@@ -549,11 +549,43 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(45deg, #6366f1, #8b5cf6);
+    background: linear-gradient(45deg, #0070c2, #0c8ee4);
     border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(45deg, #4f46e5, #7c3aed);
+    background: linear-gradient(45deg, #005a9e, #0070c2);
+}
+
+/* Navbar styles */
+.nav-link {
+    @apply text-navy-600 hover:text-navy-800 transition-colors duration-200;
+}
+
+.nav-link.active {
+    @apply text-navy-800 font-semibold;
+}
+
+/* Button styles */
+.btn-primary {
+    @apply bg-navy-600 hover:bg-navy-700 text-white transition-colors duration-200;
+}
+
+.btn-secondary {
+    @apply bg-navy-100 hover:bg-navy-200 text-navy-800 transition-colors duration-200;
+}
+
+/* Card styles */
+.card {
+    @apply bg-white border border-navy-100 shadow-sm hover:shadow-md transition-shadow duration-200;
+}
+
+/* Background gradients */
+.bg-gradient-primary {
+    @apply bg-gradient-to-br from-navy-50 to-navy-100;
+}
+
+.bg-gradient-secondary {
+    @apply bg-gradient-to-br from-navy-100 to-navy-200;
 }
 </style>

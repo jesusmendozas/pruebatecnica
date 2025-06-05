@@ -94,7 +94,6 @@ const deleteUsuario = async (usuario) => {
                                 <h1 class="text-3xl font-bold bg-gradient-to-r from-teal-800 to-teal-600 bg-clip-text text-transparent">
                                     Gestión de Usuarios
                                 </h1>
-                                <p class="text-teal-600 mt-1">Administra los usuarios del sistema</p>
                             </div>
                             <button @click="openCreateModal"
                                 class="group relative px-6 py-3 bg-gradient-to-r from-teal-700 to-teal-800 text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:from-teal-800 hover:to-teal-900 focus:outline-none focus:ring-4 focus:ring-teal-300">

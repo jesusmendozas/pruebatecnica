@@ -159,7 +159,7 @@ const deleteBloque = async (bloque) => {
 
 <template>
     <AppLayout title="Bloques">
-        <div class="min-h-screen bg-gradient-to-br from-slate-50 to-teal-50">
+        <div class="min-h-screen bg-gradient-to-br from-navy-50 to-navy-100">
             <!-- Add SweetAlert2 CSS -->
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css">
             <div class="container mx-auto px-4 py-8">
@@ -170,20 +170,20 @@ const deleteBloque = async (bloque) => {
 
                         <div class="relative group">
                             <input v-model="searchTerm" type="text" placeholder="Buscar bloques..."
-                                class="w-80 px-6 py-4 rounded-full border-2 border-transparent bg-white/80 backdrop-blur-sm shadow-lg focus:border-cyan-400 focus:shadow-2xl transition-all duration-500 transform group-hover:scale-105 focus:scale-105 text-gray-700">
-                            <div class="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400/20 to-teal-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                                class="w-80 px-6 py-4 rounded-full border-2 border-transparent bg-white/80 backdrop-blur-sm shadow-lg focus:border-navy-400 focus:shadow-2xl transition-all duration-500 transform group-hover:scale-105 focus:scale-105 text-gray-700">
+                            <div class="absolute inset-0 rounded-full bg-gradient-to-r from-navy-400/20 to-navy-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                         </div>
 
                         <div class="flex bg-white/80 backdrop-blur-sm rounded-full p-1 shadow-lg">
                             <button @click="viewMode = 'grid'"
-                                :class="viewMode === 'grid' ? 'bg-cyan-500 text-white shadow-lg' : 'text-gray-600 hover:text-cyan-600'"
+                                :class="viewMode === 'grid' ? 'bg-navy-500 text-white shadow-lg' : 'text-gray-600 hover:text-navy-600'"
                                 class="px-4 py-2 rounded-full transition-all duration-300 transform hover:scale-110">
                                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                                     <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
                                 </svg>
                             </button>
                             <button @click="viewMode = 'list'"
-                                :class="viewMode === 'list' ? 'bg-cyan-500 text-white shadow-lg' : 'text-gray-600 hover:text-cyan-600'"
+                                :class="viewMode === 'list' ? 'bg-navy-500 text-white shadow-lg' : 'text-gray-600 hover:text-navy-600'"
                                 class="px-4 py-2 rounded-full transition-all duration-300 transform hover:scale-110">
                                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"/>
@@ -192,14 +192,14 @@ const deleteBloque = async (bloque) => {
                         </div>
 
                         <button @click="openCreateModal"
-                            class="relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-teal-600 text-white font-bold rounded-full shadow-xl hover:shadow-2xl transform transition-all duration-500 hover:scale-110 hover:rotate-1 group overflow-hidden">
+                            class="relative px-8 py-4 bg-gradient-to-r from-navy-500 to-navy-600 text-white font-bold rounded-full shadow-xl hover:shadow-2xl transform transition-all duration-500 hover:scale-110 hover:rotate-1 group overflow-hidden">
                             <span class="relative z-10 flex items-center gap-2">
                                 <svg class="w-6 h-6 transform group-hover:rotate-180 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
                                 </svg>
                                 Crear Bloque
                             </span>
-                            <div class="absolute inset-0 bg-gradient-to-r from-teal-600 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div class="absolute inset-0 bg-gradient-to-r from-navy-600 to-navy-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         </button>
                     </div>
 
@@ -207,20 +207,20 @@ const deleteBloque = async (bloque) => {
                     <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 animate-fadeInUp">
                         <div v-for="bloque in filteredBloques" :key="bloque.IDBloque"
                             :class="[
-                                'group bg-white rounded-2xl shadow-md hover:shadow-xl transform transition-all duration-500 hover:scale-[1.02] border border-teal-100',
+                                'group bg-white rounded-2xl shadow-md hover:shadow-xl transform transition-all duration-500 hover:scale-[1.02] border border-navy-100',
                                 viewMode === 'list' ? 'col-span-full' : ''
                             ]">
 
-                            <div class="bg-gradient-to-r from-teal-500 to-teal-600 rounded-t-2xl p-6 text-white">
+                            <div class="bg-gradient-to-r from-navy-500 to-navy-600 rounded-t-2xl p-6 text-white">
                                 <div class="flex justify-between items-start">
                                     <div class="flex-1">
-                                        <h3 class="text-xl font-bold mb-2 group-hover:text-teal-100 transition-colors duration-300">
+                                        <h3 class="text-xl font-bold mb-2 group-hover:text-navy-100 transition-colors duration-300">
                                             {{ bloque.nombre_bloque }}
                                         </h3>
                                         <div class="flex flex-col gap-1">
                                             <div class="flex flex-wrap gap-4 text-sm text-gray-600">
-                                                <span class="bg-cyan-100 px-3 py-1 rounded-full hover:bg-cyan-200 transition-colors duration-300">ID: {{ bloque.IDBloque }}</span>
-                                                <span class="bg-teal-100 px-3 py-1 rounded-full hover:bg-teal-200 transition-colors duration-300">{{ bloque.proyecto?.nombre || 'Sin proyecto' }}</span>
+                                                <span class="bg-navy-100 px-3 py-1 rounded-full hover:bg-navy-200 transition-colors duration-300">ID: {{ bloque.IDBloque }}</span>
+                                                <span class="bg-navy-100 px-3 py-1 rounded-full hover:bg-navy-200 transition-colors duration-300">{{ bloque.proyecto?.nombre || 'Sin proyecto' }}</span>
                                                 <span class="bg-gray-100 px-3 py-1 rounded-full hover:bg-gray-200 transition-colors duration-300">{{ bloque.piezas?.length || 0 }} piezas</span>
                                             </div>
                                         </div>
@@ -250,12 +250,12 @@ const deleteBloque = async (bloque) => {
                             <div class="p-6">
                                 <div class="flex items-center justify-between mb-4">
                                     <h4 class="font-semibold text-gray-800 flex items-center gap-2">
-                                        <svg class="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <svg class="w-5 h-5 text-navy-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
                                         </svg>
                                         Piezas Asociadas
                                     </h4>
-                                    <span class="px-3 py-1 bg-teal-100 text-teal-700 rounded-full text-sm font-medium">
+                                    <span class="px-3 py-1 bg-navy-100 text-navy-700 rounded-full text-sm font-medium">
                                         {{ bloque.piezas?.length || 0 }} piezas
                                     </span>
                                 </div>
@@ -264,7 +264,7 @@ const deleteBloque = async (bloque) => {
                                 <div class="space-y-3 max-h-64 overflow-y-auto custom-scrollbar">
                                     <div v-if="bloque.piezas && bloque.piezas.length > 0">
                                         <div v-for="pieza in bloque.piezas" :key="pieza.IdPieza"
-                                            class="bg-gradient-to-r from-slate-50 to-teal-50 p-4 rounded-xl border border-teal-100 hover:shadow-md transition-all duration-300 hover:border-teal-200">
+                                            class="bg-gradient-to-r from-slate-50 to-navy-50 p-4 rounded-xl border border-navy-100 hover:shadow-md transition-all duration-300 hover:border-navy-200">
                                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                                 <div>
                                                     <p class="text-sm font-medium text-gray-700 mb-1">
@@ -289,9 +289,9 @@ const deleteBloque = async (bloque) => {
                                                 </div>
                                                 <div class="flex justify-end items-center">
                                                     <span :class="{
-                                                        'bg-green-100 text-green-700': pieza.estado === 'completado',
-                                                        'bg-yellow-100 text-yellow-700': pieza.estado === 'en_proceso',
-                                                        'bg-gray-100 text-gray-700': pieza.estado === 'pendiente',
+                                                        'bg-navy-100 text-navy-700': pieza.estado === 'completado',
+                                                        'bg-navy-200 text-navy-800': pieza.estado === 'en_proceso',
+                                                        'bg-navy-100 text-navy-700': pieza.estado === 'pendiente',
                                                         'bg-red-100 text-red-700': pieza.estado === 'error'
                                                     }" class="px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap">
                                                         {{ pieza.estado }}
@@ -316,7 +316,7 @@ const deleteBloque = async (bloque) => {
                     <!-- Mensaje cuando no hay bloques -->
                     <div v-if="!bloques || bloques.length === 0" class="text-center py-16">
                         <div class="bg-white rounded-2xl shadow-lg p-12 max-w-md mx-auto">
-                            <div class="text-teal-400 mb-4">
+                            <div class="text-navy-400 mb-4">
                                 <svg class="w-20 h-20 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
                                 </svg>
@@ -324,7 +324,7 @@ const deleteBloque = async (bloque) => {
                             <h3 class="text-xl font-semibold text-gray-700 mb-2">No hay bloques</h3>
                             <p class="text-gray-500 mb-6">Comienza creando tu primer bloque</p>
                             <button @click="openCreateModal"
-                                class="px-6 py-3 bg-teal-600 text-white font-semibold rounded-xl hover:bg-teal-700 transform transition-all duration-300 hover:scale-105">
+                                class="px-6 py-3 bg-navy-600 text-white font-semibold rounded-xl hover:bg-navy-700 transform transition-all duration-300 hover:scale-105">
                                 Crear Primer Bloque
                             </button>
                         </div>
@@ -351,7 +351,7 @@ const deleteBloque = async (bloque) => {
                     leave-to-class="opacity-0 scale-95">
                     <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md transform transition-all">
                         <!-- Header del modal -->
-                        <div class="bg-gradient-to-r from-teal-600 to-teal-700 rounded-t-2xl p-6 text-white">
+                        <div class="bg-gradient-to-r from-navy-600 to-navy-700 rounded-t-2xl p-6 text-white">
                             <h3 class="text-xl font-bold flex items-center gap-2">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
@@ -364,31 +364,31 @@ const deleteBloque = async (bloque) => {
                         <form @submit.prevent="saveBloque" class="p-6 space-y-6">
                             <div class="space-y-4">
                                 <div class="group">
-                                    <label class="block text-sm font-bold text-gray-700 mb-3 transform group-hover:text-cyan-600 transition-colors duration-300">
+                                    <label class="block text-sm font-bold text-gray-700 mb-3 transform group-hover:text-navy-600 transition-colors duration-300">
                                         ID del Bloque
                                     </label>
                                     <input v-model="formData.IDBloque" type="text"
-                                        class="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl focus:border-cyan-500 focus:ring-4 focus:ring-cyan-200 transition-all duration-500 transform focus:scale-105 bg-gradient-to-r from-white to-cyan-50/30"
+                                        class="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl focus:border-navy-500 focus:ring-4 focus:ring-navy-200 transition-all duration-500 transform focus:scale-105 bg-gradient-to-r from-white to-navy-50/30"
                                         placeholder="Ingrese el ID único del bloque"
                                         required>
                                 </div>
 
                                 <div class="group">
-                                    <label class="block text-sm font-bold text-gray-700 mb-3 transform group-hover:text-teal-600 transition-colors duration-300">
+                                    <label class="block text-sm font-bold text-gray-700 mb-3 transform group-hover:text-navy-600 transition-colors duration-300">
                                         Nombre del Bloque
                                     </label>
                                     <input v-model="formData.nombre_bloque" type="text"
-                                        class="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl focus:border-teal-500 focus:ring-4 focus:ring-teal-200 transition-all duration-500 transform focus:scale-105 bg-gradient-to-r from-white to-teal-50/30"
+                                        class="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl focus:border-navy-500 focus:ring-4 focus:ring-navy-200 transition-all duration-500 transform focus:scale-105 bg-gradient-to-r from-white to-navy-50/30"
                                         placeholder="Nombre descriptivo del bloque"
                                         required>
                                 </div>
 
                                 <div class="group">
-                                    <label class="block text-sm font-bold text-gray-700 mb-3 transform group-hover:text-cyan-600 transition-colors duration-300">
+                                    <label class="block text-sm font-bold text-gray-700 mb-3 transform group-hover:text-navy-600 transition-colors duration-300">
                                         Proyecto Asociado
                                     </label>
                                     <select v-model="formData.IDproyecto"
-                                        class="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl focus:border-cyan-500 focus:ring-4 focus:ring-cyan-200 transition-all duration-500 transform focus:scale-105 bg-gradient-to-r from-white to-cyan-50/30"
+                                        class="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl focus:border-navy-500 focus:ring-4 focus:ring-navy-200 transition-all duration-500 transform focus:scale-105 bg-gradient-to-r from-white to-navy-50/30"
                                         required>
                                         <option value="">Seleccione un proyecto</option>
                                         <option v-for="proyecto in proyectos" :key="proyecto.IDproyecto" :value="proyecto.IDproyecto">
@@ -405,7 +405,7 @@ const deleteBloque = async (bloque) => {
                                     Cancelar
                                 </button>
                                 <button type="submit" :disabled="isLoading"
-                                    class="flex-1 px-6 py-4 bg-gradient-to-r from-cyan-500 to-teal-600 text-white font-bold rounded-2xl hover:from-cyan-600 hover:to-teal-700 transition-all duration-300 transform hover:scale-105 hover:rotate-1 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed">
+                                    class="flex-1 px-6 py-4 bg-gradient-to-r from-navy-500 to-navy-600 text-white font-bold rounded-2xl hover:from-navy-600 hover:to-navy-700 transition-all duration-300 transform hover:scale-105 hover:rotate-1 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed">
                                     <span v-if="isLoading" class="flex items-center justify-center gap-2">
                                         <div class="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
                                         Guardando...
@@ -432,7 +432,7 @@ const deleteBloque = async (bloque) => {
             <div v-if="isLoading" class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
                 <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-2xl transform transition-all duration-500 animate-pulse">
                     <div class="flex flex-col items-center gap-4">
-                        <div class="w-16 h-16 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin"></div>
+                        <div class="w-16 h-16 border-4 border-navy-500 border-t-transparent rounded-full animate-spin"></div>
                         <p class="text-xl font-semibold text-gray-700">Procesando...</p>
                     </div>
                 </div>
@@ -452,12 +452,12 @@ const deleteBloque = async (bloque) => {
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: #14b8a6;
+    background: #0070c2;
     border-radius: 2px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: #0f766e;
+    background: #005a9e;
 }
 
 /* Animaciones personalizadas */
@@ -474,7 +474,7 @@ const deleteBloque = async (bloque) => {
     animation: float 3s ease-in-out infinite;
 }
 
-/* Animaciones de entrada (copiadas de Proyectos.vue y Usuarios.vue) */
+/* Animaciones de entrada */
 @keyframes fadeInDown {
     from {
         opacity: 0;
@@ -505,50 +505,6 @@ const deleteBloque = async (bloque) => {
     animation: fadeInUp 0.8s ease-out both;
 }
 
-@keyframes fade-in {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-.animate-fade-in {
-    animation: fade-in 0.6s ease-out;
-}
-
-@keyframes slide-up {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.animate-slide-up {
-    animation: slide-up 0.8s ease-out;
-}
-
-@keyframes fade-in-up {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.animate-fade-in-up {
-    animation: fade-in-up 0.5s ease-out forwards;
-    opacity: 0;
-}
-
 /* Efectos de hover */
 .hover-lift {
     transition: transform 0.3s ease;
@@ -574,5 +530,22 @@ const deleteBloque = async (bloque) => {
     100% {
         background-position: 0% 50%;
     }
+}
+
+/* Estados de las piezas */
+.status-pending {
+    @apply bg-navy-100 text-navy-700;
+}
+
+.status-in-progress {
+    @apply bg-navy-200 text-navy-800;
+}
+
+.status-completed {
+    @apply bg-navy-300 text-navy-900;
+}
+
+.status-error {
+    @apply bg-red-100 text-red-700;
 }
 </style>

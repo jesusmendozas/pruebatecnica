@@ -87,21 +87,21 @@ const getEstadoConfig = (estado) => {
     switch (estado) {
         case 'Pendiente':
             return {
-                color: 'bg-amber-50 text-amber-800 border-amber-200',
+                color: 'bg-navy-100 text-navy-700 border-navy-200',
                 icon: Clock,
-                iconColor: 'text-amber-600'
+                iconColor: 'text-navy-600'
             };
         case 'Fabricada':
             return {
-                color: 'bg-emerald-50 text-emerald-800 border-emerald-200',
+                color: 'bg-navy-300 text-navy-900 border-navy-200',
                 icon: CheckCircle,
-                iconColor: 'text-emerald-600'
+                iconColor: 'text-navy-600'
             };
         default:
             return {
-                color: 'bg-slate-50 text-slate-700 border-slate-200',
+                color: 'bg-navy-100 text-navy-700 border-navy-200',
                 icon: Clock,
-                iconColor: 'text-slate-500'
+                iconColor: 'text-navy-500'
             };
     }
 };
@@ -654,23 +654,23 @@ onMounted(() => {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(to bottom, #3b82f6, #1e40af);
+    background: linear-gradient(to bottom, #0070c2, #005a9e);
     border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(to bottom, #1e40af, #1e3a8a);
+    background: linear-gradient(to bottom, #005a9e, #004b83);
 }
 
 /* Focus styles */
 .focus\:ring-2:focus {
-    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+    box-shadow: 0 0 0 2px rgba(0, 112, 194, 0.2);
 }
 
 /* Selection styles */
 ::selection {
-    background-color: rgba(59, 130, 246, 0.2);
-    color: #1e40af;
+    background-color: rgba(0, 112, 194, 0.2);
+    color: #005a9e;
 }
 
 /* Responsive grid improvements */
@@ -693,5 +693,45 @@ onMounted(() => {
         grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 1.5rem;
     }
+}
+
+/* Estados de las piezas */
+.status-pending {
+    @apply bg-navy-100 text-navy-700;
+}
+
+.status-in-progress {
+    @apply bg-navy-200 text-navy-800;
+}
+
+.status-completed {
+    @apply bg-navy-300 text-navy-900;
+}
+
+.status-error {
+    @apply bg-red-100 text-red-700;
+}
+
+/* Gradientes y fondos */
+.bg-navy-gradient {
+    background: linear-gradient(135deg, #0070c2 0%, #005a9e 100%);
+}
+
+.bg-navy-light {
+    background-color: #f0f7ff;
+}
+
+/* Botones */
+.btn-navy {
+    @apply bg-navy-600 hover:bg-navy-700 text-white transition-colors duration-200;
+}
+
+/* Bordes y sombras */
+.border-navy {
+    border-color: #0070c2;
+}
+
+.shadow-navy {
+    box-shadow: 0 4px 6px -1px rgba(0, 112, 194, 0.1), 0 2px 4px -1px rgba(0, 112, 194, 0.06);
 }
 </style>
