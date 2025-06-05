@@ -11,6 +11,12 @@ const props = defineProps({
     estadosPorProyecto: Array
 });
 
+// Add debug logging
+console.log('Props received:', {
+    piezasPendientes: props.piezasPendientes,
+    estadosPorProyecto: props.estadosPorProyecto
+});
+
 const chartRef = ref(null);
 const expandedProyectos = ref({});
 const expandedBloques = ref({});
@@ -30,59 +36,75 @@ const getPriorityColor = (cantidad) => {
 };
 
 onMounted(() => {
+    console.log('Chart mounting with data:', props.estadosPorProyecto);
+    if (!chartRef.value) {
+        console.error('Chart canvas reference is null');
+        return;
+    }
+
     const ctx = chartRef.value.getContext('2d');
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: props.estadosPorProyecto.map(p => p.nombre_proyecto),
-            datasets: [
-                {
-                    label: 'Piezas Pendientes',
-                    data: props.estadosPorProyecto.map(p => p.pendientes),
-                    backgroundColor: 'rgba(239, 68, 68, 0.5)',
-                    borderColor: 'rgb(239, 68, 68)',
-                    borderWidth: 1
-                },
-                {
-                    label: 'Piezas Fabricadas',
-                    data: props.estadosPorProyecto.map(p => p.fabricadas),
-                    backgroundColor: 'rgba(34, 197, 94, 0.5)',
-                    borderColor: 'rgb(34, 197, 94)',
-                    borderWidth: 1
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: 'Cantidad de Piezas'
+    if (!ctx) {
+        console.error('Could not get 2d context from canvas');
+        return;
+    }
+
+    try {
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: props.estadosPorProyecto.map(p => p.nombre_proyecto),
+                datasets: [
+                    {
+                        label: 'Piezas Pendientes',
+                        data: props.estadosPorProyecto.map(p => p.pendientes),
+                        backgroundColor: 'rgba(239, 68, 68, 0.5)',
+                        borderColor: 'rgb(239, 68, 68)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Piezas Fabricadas',
+                        data: props.estadosPorProyecto.map(p => p.fabricadas),
+                        backgroundColor: 'rgba(34, 197, 94, 0.5)',
+                        borderColor: 'rgb(34, 197, 94)',
+                        borderWidth: 1
                     }
-                },
-                x: {
-                    title: {
-                        display: true,
-                        text: 'Proyectos'
-                    }
-                }
+                ]
             },
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Estado de Piezas por Proyecto',
-                    font: {
-                        size: 16
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Cantidad de Piezas'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Proyectos'
+                        }
                     }
                 },
-                legend: {
-                    position: 'top'
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Estado de Piezas por Proyecto',
+                        font: {
+                            size: 16
+                        }
+                    },
+                    legend: {
+                        position: 'top'
+                    }
                 }
             }
-        }
-    });
+        });
+    } catch (error) {
+        console.error('Error creating chart:', error);
+    }
 });
 </script>
 

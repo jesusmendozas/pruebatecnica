@@ -20,16 +20,17 @@ class ReporteController extends Controller
             ->get()
             ->map(function($proyecto) {
                 return [
-                    'proyecto' => $proyecto->nombre,
+                    'nombre_proyecto' => $proyecto->nombre,
                     'IDproyecto' => $proyecto->IDproyecto,
-                    'piezas_pendientes' => $proyecto->bloques->flatMap->piezas->count(),
+                    'total_pendientes' => $proyecto->bloques->flatMap->piezas->count(),
                     'bloques' => $proyecto->bloques->map(function($bloque) {
                         return [
-                            'bloque' => $bloque->nombre_bloque,
-                            'piezas_pendientes' => $bloque->piezas->count(),
+                            'nombre_bloque' => $bloque->nombre_bloque,
+                            'IDBloque' => $bloque->IDBloque,
                             'piezas' => $bloque->piezas->map(function($pieza) {
                                 return [
-                                    'pieza' => $pieza->pieza,
+                                    'nombre_pieza' => $pieza->pieza,
+                                    'IDPieza' => $pieza->IdPieza,
                                     'peso_teorico' => $pieza->peso_teorico,
                                     'estado' => $pieza->estado
                                 ];
@@ -45,7 +46,7 @@ class ReporteController extends Controller
                 ->map(function($proyecto) {
                     $piezas = $proyecto->bloques->flatMap->piezas;
                     return [
-                        'proyecto' => $proyecto->nombre,
+                        'nombre_proyecto' => $proyecto->nombre,
                         'IDproyecto' => $proyecto->IDproyecto,
                         'pendientes' => $piezas->where('estado', 'Pendiente')->count(),
                         'fabricadas' => $piezas->where('estado', 'Fabricada')->count()
