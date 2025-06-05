@@ -19,6 +19,7 @@
         "vue": "^3.2.31"
     },
     "dependencies": {
-        "chart.js": "^4.4.9"
+        "chart.js": "^4.4.9",
+        "lucide-vue-next": "^0.513.0"
     }
 }
