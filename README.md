@@ -1,6 +1,9 @@
-# Sistema de Gestión de Proyectos y Piezas
+# Sistema de Gestión
 
-Sistema desarrollado para la gestión y seguimiento de proyectos, bloques y piezas en un entorno de fabricación.
+Para iniciar sesion
+
+Usuario: admin
+Contraseña: admin123
 
 ## Características Principales
 
