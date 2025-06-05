@@ -3,6 +3,8 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 import { ref, computed } from 'vue';
 import { router } from '@inertiajs/vue3';
 import axios from 'axios';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
+import 'sweetalert2/dist/sweetalert2.css';
 
 // Configurar axios
 axios.defaults.withCredentials = true;
@@ -71,32 +73,85 @@ const saveBloque = async () => {
         if (editingBloque.value) {
             const response = await axios.put(`/api/bloques/${editingBloque.value.IDBloque}`, formData.value);
             if (response.data.success) {
-                alert('Bloque actualizado exitosamente');
+                await Swal.fire({
+                    title: '¡Éxito!',
+                    text: 'Bloque actualizado exitosamente',
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar',
+                    confirmButtonColor: '#14b8a6',
+                    timer: 3000,
+                    timerProgressBar: true
+                });
                 window.location.reload();
             }
         } else {
             const response = await axios.post('/api/bloques', formData.value);
             if (response.data.success) {
-                alert('Bloque creado exitosamente');
+                await Swal.fire({
+                    title: '¡Éxito!',
+                    text: 'Bloque creado exitosamente',
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar',
+                    confirmButtonColor: '#14b8a6',
+                    timer: 3000,
+                    timerProgressBar: true
+                });
                 window.location.reload();
             }
         }
         closeModal();
     } catch (error) {
-        alert('Error al guardar el bloque: ' + (error.response?.data?.message || error.message || 'Error desconocido'));
+        await Swal.fire({
+            title: 'Error',
+            text: error.response?.data?.message || error.message || 'Error desconocido',
+            icon: 'error',
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#ef4444'
+        });
     }
 };
 
 const deleteBloque = async (bloque) => {
-    if (confirm('¿Estás seguro de que deseas eliminar este bloque? Esta acción no se puede deshacer.')) {
+    const result = await Swal.fire({
+        title: '¿Estás seguro?',
+        text: `¿Deseas eliminar el bloque "${bloque.nombre_bloque}"? Esta acción no se puede deshacer.`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#ef4444',
+        cancelButtonColor: '#6b7280',
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar',
+        reverseButtons: true,
+        customClass: {
+            popup: 'rounded-2xl',
+            confirmButton: 'rounded-xl',
+            cancelButton: 'rounded-xl'
+        }
+    });
+
+    if (result.isConfirmed) {
         try {
             const response = await axios.delete(`/api/bloques/${bloque.IDBloque}`);
             if (response.data.success) {
-                alert('Bloque eliminado exitosamente');
+                await Swal.fire({
+                    title: '¡Eliminado!',
+                    text: 'El bloque ha sido eliminado exitosamente',
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar',
+                    confirmButtonColor: '#14b8a6',
+                    timer: 3000,
+                    timerProgressBar: true
+                });
                 window.location.reload();
             }
         } catch (error) {
-            alert('Error al eliminar el bloque: ' + (error.response?.data?.message || error.message || 'Error desconocido'));
+            await Swal.fire({
+                title: 'Error',
+                text: error.response?.data?.message || error.message || 'Error al eliminar el bloque',
+                icon: 'error',
+                confirmButtonText: 'Aceptar',
+                confirmButtonColor: '#ef4444'
+            });
         }
     }
 };
@@ -105,6 +160,8 @@ const deleteBloque = async (bloque) => {
 <template>
     <AppLayout title="Bloques">
         <div class="min-h-screen bg-gradient-to-br from-slate-50 to-teal-50">
+            <!-- Add SweetAlert2 CSS -->
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css">
             <div class="container mx-auto px-4 py-8">
                 <div class="max-w-7xl mx-auto">
 
@@ -211,9 +268,22 @@ const deleteBloque = async (bloque) => {
                                                     <p class="text-sm font-medium text-gray-700 mb-1">
                                                         {{ pieza.pieza }}
                                                     </p>
-                                                    <p class="text-xs text-gray-600">
-                                                        {{ pieza.peso_teorico }} kg
-                                                    </p>
+                                                    <div class="flex flex-col gap-2">
+                                                        <div class="flex gap-2 text-xs text-gray-600">
+                                                            <span class="bg-blue-50 px-2 py-1 rounded-full">
+                                                                Teórico: {{ pieza.peso_teorico }} kg
+                                                            </span>
+                                                            <span class="bg-green-50 px-2 py-1 rounded-full">
+                                                                Real: {{ pieza.peso_real || 'N/A' }} kg
+                                                            </span>
+                                                        </div>
+                                                        <div class="text-xs text-gray-500 flex items-center gap-1">
+                                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                                            </svg>
+                                                            Registrado por: {{ pieza.registrado_por || 'No registrado' }}
+                                                        </div>
+                                                    </div>
                                                 </div>
                                                 <div class="flex justify-end items-center">
                                                     <span :class="{

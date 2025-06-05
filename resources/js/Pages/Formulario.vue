@@ -108,8 +108,7 @@ const registrarPieza = async () => {
 </script>
 
 <template>
-    <AppLayout>
-        <!-- Success Alert -->
+    <AppLayout title="Formulario">
         <Transition
             enter-active-class="transition duration-500 ease-out"
             enter-from-class="transform translate-x-full opacity-0"

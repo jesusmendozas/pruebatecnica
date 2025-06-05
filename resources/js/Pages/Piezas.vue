@@ -283,9 +283,9 @@ const formatDate = (dateString) => {
                                 <div class="bg-white rounded-lg p-4 border border-gray-200">
                                     <div class="flex items-center gap-2 mb-2">
                                         <Calendar class="w-5 h-5 text-purple-600" />
-                                        <span class="text-sm font-medium text-gray-700">Fecha Registro</span>
+                                        <span class="text-sm font-medium text-gray-700">Fecha de Registro</span>
                                     </div>
-                                    <p class="text-sm font-semibold text-gray-900">
+                                    <p class="text-lg font-semibold text-gray-900">
                                         {{ formatDate(pieza.fecha_registro) }}
                                     </p>
                                 </div>
@@ -293,11 +293,11 @@ const formatDate = (dateString) => {
                                 <!-- Registrado Por -->
                                 <div class="bg-white rounded-lg p-4 border border-gray-200">
                                     <div class="flex items-center gap-2 mb-2">
-                                        <User class="w-5 h-5 text-orange-600" />
+                                        <User class="w-5 h-5 text-indigo-600" />
                                         <span class="text-sm font-medium text-gray-700">Registrado Por</span>
                                     </div>
-                                    <p class="text-sm font-semibold text-gray-900">
-                                        {{ pieza.registrado_por || 'No registrado' }}
+                                    <p class="text-lg font-semibold text-gray-900">
+                                        {{ pieza.registrado_por }}
                                     </p>
                                 </div>
                             </div>
@@ -359,14 +359,14 @@ const formatDate = (dateString) => {
                             </select>
                         </div>
                     </div>
-                    <div class="mt-6 flex justify-end gap-3">
+                    <div class="mt-6 flex justify-end space-x-3">
                         <button type="button" @click="showCreateModal = false"
-                            class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
+                            class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                             Cancelar
                         </button>
                         <button type="submit"
-                            class="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700">
-                            Crear
+                            class="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            Crear Pieza
                         </button>
                     </div>
                 </form>
@@ -413,14 +413,14 @@ const formatDate = (dateString) => {
                             </select>
                         </div>
                     </div>
-                    <div class="mt-6 flex justify-end gap-3">
+                    <div class="mt-6 flex justify-end space-x-3">
                         <button type="button" @click="showEditModal = false"
-                            class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
+                            class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                             Cancelar
                         </button>
                         <button type="submit"
-                            class="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700">
-                            Guardar
+                            class="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            Guardar Cambios
                         </button>
                     </div>
                 </form>
@@ -432,15 +432,15 @@ const formatDate = (dateString) => {
             <div class="bg-white rounded-lg p-6 max-w-md w-full">
                 <h3 class="text-lg font-medium text-gray-900 mb-4">Eliminar Pieza</h3>
                 <p class="text-sm text-gray-500 mb-4">
-                    ¿Está seguro que desea eliminar la pieza "{{ selectedPieza?.pieza }}"? Esta acción no se puede deshacer.
+                    ¿Estás seguro de que deseas eliminar la pieza "{{ selectedPieza?.pieza }}"? Esta acción no se puede deshacer.
                 </p>
-                <div class="mt-6 flex justify-end gap-3">
+                <div class="mt-6 flex justify-end space-x-3">
                     <button type="button" @click="showDeleteModal = false"
-                        class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
+                        class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                         Cancelar
                     </button>
                     <button type="button" @click="submitDelete"
-                        class="px-4 py-2 text-sm font-medium text-white bg-red-600 border border-transparent rounded-md hover:bg-red-700">
+                        class="px-4 py-2 text-sm font-medium text-white bg-red-600 border border-transparent rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
                         Eliminar
                     </button>
                 </div>

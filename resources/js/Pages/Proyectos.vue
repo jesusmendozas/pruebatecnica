@@ -9,11 +9,30 @@ const props = defineProps({
 
 const expandedProyecto = ref(null);
 const showModal = ref(false);
+const showDeleteModal = ref(false);
+const showAlert = ref(false);
+const alertConfig = ref({
+    type: 'success',
+    message: '',
+    show: false
+});
+const proyectoToDelete = ref(null);
 const editingProyecto = ref(null);
 const formData = ref({
     nombre: '',
     IDproyecto: ''
 });
+
+const showNotification = (type, message) => {
+    alertConfig.value = {
+        type,
+        message,
+        show: true
+    };
+    setTimeout(() => {
+        alertConfig.value.show = false;
+    }, 3000);
+};
 
 const toggleProyecto = (proyectoId) => {
     expandedProyecto.value = expandedProyecto.value === proyectoId ? null : proyectoId;
@@ -46,39 +65,74 @@ const closeModal = () => {
     editingProyecto.value = null;
 };
 
+const openDeleteModal = (proyecto) => {
+    proyectoToDelete.value = proyecto;
+    showDeleteModal.value = true;
+};
+
+const closeDeleteModal = () => {
+    showDeleteModal.value = false;
+    proyectoToDelete.value = null;
+};
+
 const saveProyecto = async () => {
     try {
         if (editingProyecto.value) {
             await router.put(`/api/proyectos/${editingProyecto.value.IDproyecto}`, {
                 nombre: formData.value.nombre
             });
-            alert('Proyecto actualizado exitosamente');
+            showNotification('success', 'Proyecto actualizado exitosamente');
         } else {
             await router.post('/api/proyectos', formData.value);
-            alert('Proyecto creado exitosamente');
+            showNotification('success', 'Proyecto creado exitosamente');
         }
         closeModal();
         window.location.reload();
     } catch (error) {
-        alert('Error al guardar el proyecto: ' + (error.message || 'Error desconocido'));
+        showNotification('error', 'Error al guardar el proyecto: ' + (error.message || 'Error desconocido'));
     }
 };
 
-const deleteProyecto = async (proyecto) => {
-    if (confirm('¿Estás seguro de que deseas eliminar este proyecto? Esta acción no se puede deshacer.')) {
-        try {
-            await router.delete(`/api/proyectos/${proyecto.IDproyecto}`);
-            alert('Proyecto eliminado exitosamente');
-            window.location.reload();
-        } catch (error) {
-            alert('Error al eliminar el proyecto: ' + (error.message || 'Error desconocido'));
-        }
+const deleteProyecto = async () => {
+    try {
+        await router.delete(`/api/proyectos/${proyectoToDelete.value.IDproyecto}`);
+        showNotification('success', 'Proyecto eliminado exitosamente');
+        closeDeleteModal();
+        window.location.reload();
+    } catch (error) {
+        showNotification('error', 'Error al eliminar el proyecto: ' + (error.message || 'Error desconocido'));
     }
 };
 </script>
 
 <template>
     <AppLayout title="Proyectos">
+        <!-- Alerta de notificación -->
+        <transition name="alert">
+            <div v-if="alertConfig.show"
+                class="fixed top-4 right-4 z-50 max-w-sm w-full bg-white rounded-lg shadow-lg border-l-4"
+                :class="{
+                    'border-green-500': alertConfig.type === 'success',
+                    'border-red-500': alertConfig.type === 'error'
+                }">
+                <div class="p-4">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <svg v-if="alertConfig.type === 'success'" class="h-6 w-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            <svg v-else class="h-6 w-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </div>
+                        <div class="ml-3">
+                            <p class="text-sm font-medium text-gray-900">{{ alertConfig.message }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </transition>
+
         <!-- Fondo con gradiente -->
         <div class="min-h-screen bg-gradient-to-br from-slate-50 via-teal-50 to-cyan-100">
             <div class="container mx-auto px-4 py-8">
@@ -139,7 +193,7 @@ const deleteProyecto = async (proyecto) => {
                                                     d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                             </svg>
                                         </button>
-                                        <button @click="deleteProyecto(proyecto)"
+                                        <button @click="openDeleteModal(proyecto)"
                                             class="p-2.5 text-rose-500 hover:text-white hover:bg-rose-500 rounded-xl transition-all duration-300 transform hover:scale-110 hover:-rotate-3">
                                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -282,6 +336,41 @@ const deleteProyecto = async (proyecto) => {
                 </div>
             </div>
         </transition>
+
+        <!-- Modal de confirmación de eliminación -->
+        <transition name="modal" mode="out-in">
+            <div v-if="showDeleteModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+                <div class="bg-white rounded-2xl shadow-2xl border border-rose-100 w-full max-w-md transform transition-all duration-300">
+                    <div class="p-6">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-10 h-10 bg-gradient-to-r from-rose-500 to-red-600 rounded-xl flex items-center justify-center">
+                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold text-slate-800">
+                                Confirmar Eliminación
+                            </h3>
+                        </div>
+
+                        <p class="text-slate-600 mb-6">
+                            ¿Estás seguro de que deseas eliminar el proyecto "{{ proyectoToDelete?.nombre }}"? Esta acción no se puede deshacer.
+                        </p>
+
+                        <div class="flex gap-3">
+                            <button @click="closeDeleteModal"
+                                class="flex-1 px-4 py-3 bg-slate-100 text-slate-700 rounded-xl hover:bg-slate-200 transition-all duration-300 font-medium">
+                                Cancelar
+                            </button>
+                            <button @click="deleteProyecto"
+                                class="flex-1 px-4 py-3 bg-gradient-to-r from-rose-500 to-red-600 text-white rounded-xl hover:from-rose-600 hover:to-red-700 transition-all duration-300 font-medium shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                                Eliminar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </transition>
     </AppLayout>
 </template>
 
@@ -373,5 +462,20 @@ const deleteProyecto = async (proyecto) => {
 /* Gradientes personalizados */
 .border-gradient-to-b {
     border-image: linear-gradient(to bottom, #14b8a6, #0891b2) 1;
+}
+
+/* Estilos para las alertas */
+.alert-enter-active, .alert-leave-active {
+    transition: all 0.3s ease-out;
+}
+
+.alert-enter-from, .alert-leave-to {
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+.alert-enter-to, .alert-leave-from {
+    opacity: 1;
+    transform: translateX(0);
 }
 </style>
