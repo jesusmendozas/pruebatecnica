@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('piezas', function (Blueprint $table) {
             $table->string('IdPieza')->primary();
             $table->string('pieza');
-            $table->decimal('peso_teorico')->nullable();
-            $table->decimal('peso_real')->nullable();
+            $table->decimal('peso_teorico', 10, 2)->nullable();
+            $table->decimal('peso_real', 10, 2)->nullable();
             $table->string('estado');
             $table->string('IDBloque');
             $table->date('fecha_registro')->nullable();

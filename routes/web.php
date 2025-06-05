@@ -40,6 +40,7 @@ Route::middleware([
     })->name('dashboard');
 
     Route::get('/formulario', [FormularioController::class, 'index'])->name('formulario');
+    Route::post('/formulario/store', [FormularioController::class, 'store'])->name('formulario.store');
 
     Route::get('/proyectos', [ProyectoController::class, 'index'])->name('proyectos');
     Route::get('/bloques', [BloqueController::class, 'index'])->name('bloques');
