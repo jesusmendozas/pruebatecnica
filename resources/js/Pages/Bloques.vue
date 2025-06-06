@@ -6,7 +6,6 @@ import axios from 'axios';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import 'sweetalert2/dist/sweetalert2.css';
 
-// Configurar axios
 axios.defaults.withCredentials = true;
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -26,7 +25,6 @@ const formData = ref({
     IDproyecto: ''
 });
 
-// Computed property for filtered bloques
 const filteredBloques = computed(() => {
     if (!searchTerm.value) return props.bloques;
 
@@ -160,12 +158,10 @@ const deleteBloque = async (bloque) => {
 <template>
     <AppLayout title="Bloques">
         <div class="min-h-screen bg-gradient-to-br from-navy-50 to-navy-100">
-            <!-- Add SweetAlert2 CSS -->
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css">
             <div class="container mx-auto px-4 py-8">
                 <div class="max-w-7xl mx-auto">
 
-                    <!-- Header con animación de entrada -->
                     <div class="flex flex-col md:flex-row gap-4 justify-center items-center mb-8 animate-fadeInDown">
 
                         <div class="relative group">
@@ -203,7 +199,6 @@ const deleteBloque = async (bloque) => {
                         </button>
                     </div>
 
-                    <!-- Grid/lista de bloques con animación de entrada -->
                     <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 animate-fadeInUp">
                         <div v-for="bloque in filteredBloques" :key="bloque.IDBloque"
                             :class="[
@@ -226,7 +221,6 @@ const deleteBloque = async (bloque) => {
                                         </div>
                                     </div>
 
-                                    <!-- Botones de acción -->
                                     <div class="flex gap-2 ml-4">
                                         <button @click="openEditModal(bloque)"
                                             class="p-2 bg-white/20 rounded-lg hover:bg-white/30 transform transition-all duration-300 hover:scale-110 backdrop-blur-sm">
@@ -246,7 +240,6 @@ const deleteBloque = async (bloque) => {
                                 </div>
                             </div>
 
-                            <!-- Contenido del bloque -->
                             <div class="p-6">
                                 <div class="flex items-center justify-between mb-4">
                                     <h4 class="font-semibold text-gray-800 flex items-center gap-2">
@@ -260,7 +253,6 @@ const deleteBloque = async (bloque) => {
                                     </span>
                                 </div>
 
-                                <!-- Lista de piezas -->
                                 <div class="space-y-3 max-h-64 overflow-y-auto custom-scrollbar">
                                     <div v-if="bloque.piezas && bloque.piezas.length > 0">
                                         <div v-for="pieza in bloque.piezas" :key="pieza.IdPieza"
@@ -313,7 +305,6 @@ const deleteBloque = async (bloque) => {
                         </div>
                     </div>
 
-                    <!-- Mensaje cuando no hay bloques -->
                     <div v-if="!bloques || bloques.length === 0" class="text-center py-16">
                         <div class="bg-white rounded-2xl shadow-lg p-12 max-w-md mx-auto">
                             <div class="text-navy-400 mb-4">
@@ -333,7 +324,6 @@ const deleteBloque = async (bloque) => {
             </div>
         </div>
 
-        <!-- Modal mejorado -->
         <Transition
             enter-active-class="transition ease-out duration-300"
             enter-from-class="opacity-0"
@@ -350,7 +340,6 @@ const deleteBloque = async (bloque) => {
                     leave-from-class="opacity-100 scale-100"
                     leave-to-class="opacity-0 scale-95">
                     <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md transform transition-all">
-                        <!-- Header del modal -->
                         <div class="bg-gradient-to-r from-navy-600 to-navy-700 rounded-t-2xl p-6 text-white">
                             <h3 class="text-xl font-bold flex items-center gap-2">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -360,7 +349,6 @@ const deleteBloque = async (bloque) => {
                             </h3>
                         </div>
 
-                        <!-- Contenido del modal -->
                         <form @submit.prevent="saveBloque" class="p-6 space-y-6">
                             <div class="space-y-4">
                                 <div class="group">
@@ -398,7 +386,6 @@ const deleteBloque = async (bloque) => {
                                 </div>
                             </div>
 
-                            <!-- Botones del modal -->
                             <div class="flex gap-3 pt-4">
                                 <button type="button" @click="closeModal"
                                     class="flex-1 px-6 py-4 bg-gray-200 text-gray-700 font-bold rounded-2xl hover:bg-gray-300 transition-all duration-300 transform hover:scale-105 hover:-rotate-1">
@@ -421,7 +408,6 @@ const deleteBloque = async (bloque) => {
             </div>
         </Transition>
 
-        <!-- Loading overlay -->
         <Transition
             enter-active-class="transition ease-out duration-300"
             enter-from-class="opacity-0"
@@ -460,7 +446,6 @@ const deleteBloque = async (bloque) => {
     background: #005a9e;
 }
 
-/* Animaciones personalizadas */
 @keyframes float {
     0%, 100% {
         transform: translateY(0);
@@ -474,7 +459,6 @@ const deleteBloque = async (bloque) => {
     animation: float 3s ease-in-out infinite;
 }
 
-/* Animaciones de entrada */
 @keyframes fadeInDown {
     from {
         opacity: 0;
@@ -505,7 +489,6 @@ const deleteBloque = async (bloque) => {
     animation: fadeInUp 0.8s ease-out both;
 }
 
-/* Efectos de hover */
 .hover-lift {
     transition: transform 0.3s ease;
 }
@@ -514,7 +497,6 @@ const deleteBloque = async (bloque) => {
     transform: translateY(-5px);
 }
 
-/* Gradientes animados */
 .animate-gradient {
     background-size: 200% 200%;
     animation: gradient 15s ease infinite;
@@ -532,7 +514,6 @@ const deleteBloque = async (bloque) => {
     }
 }
 
-/* Estados de las piezas */
 .status-pending {
     @apply bg-navy-100 text-navy-700;
 }

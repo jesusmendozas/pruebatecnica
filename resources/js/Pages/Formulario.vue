@@ -87,19 +87,16 @@ const registrarPieza = async () => {
 
         await router.post(route('formulario.store'), data);
 
-        // Show success alert
         showAlert.value = true;
         setTimeout(() => {
             showAlert.value = false;
         }, 3000);
 
-        // Limpiar el formulario
         selectedProyecto.value = '';
         selectedBloque.value = '';
         selectedPieza.value = '';
         pesoReal.value = '';
     } catch (error) {
-        console.error('Error completo:', error);
         alert('Error al registrar la pieza: ' + (error.message || 'Error desconocido'));
     } finally {
         isSaving.value = false;

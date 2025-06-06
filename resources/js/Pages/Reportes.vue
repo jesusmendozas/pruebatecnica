@@ -19,7 +19,6 @@ const searchTerm = ref('');
 const currentPage = ref(1);
 const itemsPerPage = 12;
 
-// Computed para filtrar y paginar
 const filteredProyectos = computed(() => {
     if (!props.piezasPendientes) return [];
 
@@ -203,7 +202,6 @@ onMounted(() => {
                     leave-to-class="transform opacity-0 scale-95 -translate-y-8"
                 >
                     <div class="space-y-6">
-                        <!-- Header Compacto -->
                         <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-cyan-100 p-6">
                             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
                                 <div>
@@ -213,7 +211,6 @@ onMounted(() => {
                                     <p class="text-slate-600 text-sm mt-1">Monitoreo en tiempo real del estado de proyectos</p>
                                 </div>
 
-                                <!-- Búsqueda integrada en header -->
                                 <div class="flex gap-3">
                                     <div class="relative">
                                         <input
@@ -238,9 +235,7 @@ onMounted(() => {
                             </div>
                         </div>
 
-                        <!-- Estadísticas y Gráfico Optimizados -->
                         <div class="grid grid-cols-1 xl:grid-cols-4 gap-6">
-                            <!-- Tarjetas de estadísticas mejoradas -->
                             <div class="xl:col-span-1 grid grid-cols-2 xl:grid-cols-1 gap-4">
                                 <div class="bg-gradient-to-br from-white to-cyan-50 rounded-2xl shadow-lg border border-cyan-100 p-6 hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
                                     <div class="flex items-center justify-between">
@@ -285,7 +280,6 @@ onMounted(() => {
                                 </div>
                             </div>
 
-                            <!-- Gráfico mejorado -->
                             <div class="xl:col-span-3">
                                 <div class="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg border border-cyan-100 p-6 hover:shadow-xl transition-all duration-500">
                                     <div class="h-80 relative">
@@ -301,7 +295,6 @@ onMounted(() => {
                             </div>
                         </div>
 
-                        <!-- Lista de Proyectos Optimizada -->
                         <div class="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg border border-cyan-100 overflow-hidden">
                             <div class="bg-gradient-to-r from-slate-800 to-cyan-700 px-6 py-4">
                                 <h3 class="text-lg font-semibold text-white flex items-center">
@@ -320,7 +313,6 @@ onMounted(() => {
                                      class="transition-all duration-300 hover:bg-gradient-to-r hover:from-slate-50 hover:to-cyan-50"
                                      :style="{ animationDelay: `${index * 100}ms` }"
                                 >
-                                    <!-- Header del Proyecto -->
                                     <div
                                         class="px-6 py-5 cursor-pointer group"
                                         @click="toggleProyecto(proyecto.IDproyecto)"
@@ -353,7 +345,6 @@ onMounted(() => {
                                         </div>
                                     </div>
 
-                                    <!-- Contenido del Proyecto -->
                                     <transition
                                         enter-active-class="transition-all ease-out duration-500"
                                         enter-from-class="transform opacity-0 -translate-y-4 scale-95"
@@ -368,7 +359,6 @@ onMounted(() => {
                                                      class="bg-white rounded-xl p-4 shadow-md border border-cyan-100 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
                                                      :style="{ animationDelay: `${bloqueIndex * 150}ms` }"
                                                 >
-                                                    <!-- Header del Bloque -->
                                                     <div
                                                         class="flex items-center justify-between cursor-pointer mb-3 group"
                                                         @click="toggleBloque(bloque.IDBloque)"
@@ -391,7 +381,6 @@ onMounted(() => {
                                                         </div>
                                                     </div>
 
-                                                    <!-- Lista de Piezas -->
                                                     <transition
                                                         enter-active-class="transition-all ease-out duration-400"
                                                         enter-from-class="transform opacity-0 -translate-y-2 scale-95"
@@ -445,7 +434,6 @@ onMounted(() => {
                                 </div>
                             </div>
 
-                            <!-- Paginación Mejorada -->
                             <div v-if="totalPages > 1" class="bg-gradient-to-r from-slate-50 to-cyan-50 px-6 py-4 border-t border-slate-200">
                                 <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
                                     <div class="text-sm text-slate-700 font-medium">
@@ -469,7 +457,6 @@ onMounted(() => {
                                 </div>
                             </div>
 
-                            <!-- Estado vacío mejorado -->
                             <div v-if="filteredProyectos.length === 0" class="px-6 py-16 text-center">
                                 <div class="max-w-sm mx-auto">
                                     <div class="bg-gradient-to-br from-cyan-100 to-teal-200 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
@@ -500,7 +487,6 @@ onMounted(() => {
 </template>
 
 <style scoped>
-/* Animaciones personalizadas para elementos que aparecen gradualmente */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -516,7 +502,6 @@ onMounted(() => {
     animation: fadeInUp 0.6s ease-out;
 }
 
-/* Efectos de hover suaves para las tarjetas */
 .card-hover {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -526,7 +511,6 @@ onMounted(() => {
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
-/* Animación para el loading del gráfico */
 @keyframes pulse {
     0%, 100% {
         opacity: 1;
@@ -540,7 +524,6 @@ onMounted(() => {
     animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-/* Gradientes personalizados para los estados */
 .status-gradient-pending {
     background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
     border-color: #f59e0b;
@@ -556,32 +539,27 @@ onMounted(() => {
     border-color: #ef4444;
 }
 
-/* Mejoras en la transición de los elementos expandibles */
 .expand-transition {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     transform-origin: top;
 }
 
-/* Efecto glassmorphism para las tarjetas principales */
 .glass-card {
     background: rgba(255, 255, 255, 0.25);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-/* Scroll suave para la paginación */
 html {
     scroll-behavior: smooth;
 }
 
-/* Estilos para mejorar la accesibilidad */
 button:focus,
 input:focus {
     outline: 2px solid #06b6d4;
     outline-offset: 2px;
 }
 
-/* Animación sutil para los iconos */
 .icon-hover {
     transition: transform 0.2s ease-in-out;
 }

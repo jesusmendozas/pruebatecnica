@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Proyecto;
 use App\Models\Pieza;
+use Exception;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\DB;
@@ -13,7 +14,6 @@ class ReporteController extends Controller
     public function index()
     {
         try {
-            // Reporte de piezas pendientes por proyecto
             $piezasPendientes = Proyecto::with(['bloques.piezas'])
             ->get()
             ->map(function($proyecto) {
@@ -40,7 +40,6 @@ class ReporteController extends Controller
                 ];
             });
 
-            // Reporte gráfico de piezas por estado
             $estadosPorProyecto = Proyecto::with(['bloques.piezas'])
                 ->get()
                 ->map(function($proyecto) {
@@ -57,7 +56,7 @@ class ReporteController extends Controller
                 'piezasPendientes' => $piezasPendientes,
                 'estadosPorProyecto' => $estadosPorProyecto
             ]);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return back()->with('error', 'Error al generar los reportes: ' . $e->getMessage());
         }
     }

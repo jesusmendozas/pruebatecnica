@@ -97,7 +97,6 @@ class BloqueController extends Controller
         try {
             $bloque = Bloque::where('IDBloque', $id)->firstOrFail();
 
-            // Verificar si el bloque tiene piezas asociadas
             if ($bloque->piezas()->exists()) {
                 if (request()->wantsJson()) {
                     return response()->json([

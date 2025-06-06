@@ -41,7 +41,6 @@ class FormularioController extends Controller
                 'peso_real' => 'required|numeric|min:0',
             ]);
 
-            Log::info('Validación exitosa, buscando pieza', ['id_pieza' => $request->id_pieza]);
 
             $pieza = Pieza::findOrFail($request->id_pieza);
 
@@ -56,12 +55,11 @@ class FormularioController extends Controller
                 'fecha_registro' => now()->format('Y-m-d')
             ];
 
-            Log::info('Intentando actualizar pieza con datos', $updateData);
 
             $updated = $pieza->update($updateData);
 
             if (!$updated) {
-                throw new \Exception('No se pudo actualizar la pieza');
+                throw new Exception('No se pudo actualizar la pieza');
             }
 
             Log::info('Pieza actualizada exitosamente', [
@@ -70,7 +68,7 @@ class FormularioController extends Controller
             ]);
 
             return back()->with('success', 'Pieza registrada exitosamente');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             Log::error('Error al registrar pieza', [
                 'error' => $e->getMessage(),
                 'trace' => $e->getTraceAsString(),

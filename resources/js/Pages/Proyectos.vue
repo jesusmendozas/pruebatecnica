@@ -107,7 +107,6 @@ const deleteProyecto = async () => {
 
 <template>
     <AppLayout title="Proyectos">
-        <!-- Alerta de notificación -->
         <transition name="alert">
             <div v-if="alertConfig.show"
                 class="fixed top-4 right-4 z-50 max-w-sm w-full bg-white rounded-lg shadow-lg border-l-4"
@@ -133,11 +132,9 @@ const deleteProyecto = async () => {
             </div>
         </transition>
 
-        <!-- Fondo con gradiente -->
         <div class="min-h-screen bg-gradient-to-br from-navy-50 via-navy-100 to-navy-200">
             <div class="container mx-auto px-4 py-8">
                 <div class="max-w-6xl mx-auto">
-                    <!-- Header con animación de entrada -->
                     <div class="mb-8 animate-fadeInDown">
                         <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-navy-100 p-6">
                             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
@@ -159,13 +156,11 @@ const deleteProyecto = async () => {
                         </div>
                     </div>
 
-                    <!-- Lista de proyectos con grid responsivo -->
                     <div class="grid gap-6 animate-fadeInUp">
                         <div v-for="(proyecto, index) in proyectos" :key="proyecto.IDproyecto"
                             class="group bg-white/90 backdrop-blur-sm rounded-2xl shadow-md hover:shadow-xl border border-navy-100 hover:border-navy-200 transition-all duration-500 ease-out hover:-translate-y-1"
                             :style="{ animationDelay: `${index * 100}ms` }">
 
-                            <!-- Header del proyecto -->
                             <div class="p-6 border-b border-navy-50">
                                 <div class="flex justify-between items-start gap-4">
                                     <div class="flex-1 cursor-pointer" @click="toggleProyecto(proyecto.IDproyecto)">
@@ -183,7 +178,6 @@ const deleteProyecto = async () => {
                                         </div>
                                     </div>
 
-                                    <!-- Botones de acción -->
                                     <div class="flex items-center gap-2">
                                         <button @click="openEditModal(proyecto)"
                                             class="p-2.5 text-navy-600 hover:text-white hover:bg-navy-500 rounded-xl transition-all duration-300 transform hover:scale-110 hover:rotate-3">
@@ -211,7 +205,6 @@ const deleteProyecto = async () => {
                                 </div>
                             </div>
 
-                            <!-- Contenido expandible -->
                             <transition name="expand" mode="out-in">
                                 <div v-if="expandedProyecto === proyecto.IDproyecto" class="overflow-hidden">
                                     <div class="p-6 space-y-4">
@@ -284,7 +277,6 @@ const deleteProyecto = async () => {
             </div>
         </div>
 
-        <!-- Modal mejorado -->
         <transition name="modal" mode="out-in">
             <div v-if="showModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
                 <div class="bg-white rounded-2xl shadow-2xl border border-navy-100 w-full max-w-md transform transition-all duration-300">
@@ -336,7 +328,6 @@ const deleteProyecto = async () => {
             </div>
         </transition>
 
-        <!-- Modal de confirmación de eliminación -->
         <transition name="modal" mode="out-in">
             <div v-if="showDeleteModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
                 <div class="bg-white rounded-2xl shadow-2xl border border-rose-100 w-full max-w-md transform transition-all duration-300">
@@ -374,7 +365,6 @@ const deleteProyecto = async () => {
 </template>
 
 <style scoped>
-/* Animaciones personalizadas */
 @keyframes fadeInDown {
     from {
         opacity: 0;
@@ -420,7 +410,6 @@ const deleteProyecto = async () => {
     animation: slideInLeft 0.6s ease-out both;
 }
 
-/* Transiciones para el contenido expandible */
 .expand-enter-active, .expand-leave-active {
     transition: all 0.5s ease-out;
     overflow: hidden;
@@ -438,7 +427,6 @@ const deleteProyecto = async () => {
     transform: translateY(0);
 }
 
-/* Transiciones para el modal */
 .modal-enter-active, .modal-leave-active {
     transition: all 0.3s ease-out;
 }
@@ -453,17 +441,14 @@ const deleteProyecto = async () => {
     transform: scale(1);
 }
 
-/* Efectos de hover suaves */
 .group:hover .group-hover\:rotate-90 {
     transform: rotate(90deg);
 }
 
-/* Gradientes personalizados */
 .border-gradient-to-b {
     border-image: linear-gradient(to bottom, #14b8a6, #0891b2) 1;
 }
 
-/* Estilos para las alertas */
 .alert-enter-active, .alert-leave-active {
     transition: all 0.3s ease-out;
 }

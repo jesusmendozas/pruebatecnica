@@ -137,16 +137,13 @@ const formatDate = (dateString) => {
     });
 };
 
-onMounted(() => {
-    // Remove debug console.log
-});
+
 </script>
 
 <template>
     <AppLayout title="Piezas">
         <div class="min-h-screen bg-gradient-to-br from-navy-50 to-navy-100 py-8">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <!-- Header Section -->
                 <div class="mb-8 animate-slide-down">
                     <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-slate-200/50 p-8">
                         <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
@@ -173,10 +170,8 @@ onMounted(() => {
                     </div>
                 </div>
 
-                <!-- Filters Section -->
                 <div class="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg border border-slate-200/50 p-6 mb-8 animate-slide-up">
                     <div class="flex flex-col lg:flex-row gap-6">
-                        <!-- Search -->
                         <div class="flex-1">
                             <div class="relative group">
                                 <Search class="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5 transition-colors group-focus-within:text-blue-600" />
@@ -189,7 +184,6 @@ onMounted(() => {
                             </div>
                         </div>
 
-                        <!-- Estado Filter -->
                         <div class="lg:w-64">
                             <div class="relative group">
                                 <Filter class="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5 transition-colors group-focus-within:text-blue-600" />
@@ -208,13 +202,11 @@ onMounted(() => {
                     </div>
                 </div>
 
-                <!-- Piezas Grid -->
                 <div class="space-y-6">
                     <div v-for="(pieza, index) in filteredPiezas" :key="pieza.IdPieza"
                         class="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg border border-slate-200/50 hover:shadow-xl transition-all duration-500 ease-out transform hover:-translate-y-1 animate-fade-in-up"
                         :style="{ animationDelay: `${index * 100}ms` }">
 
-                        <!-- Card Header -->
                         <div class="p-6">
                             <div class="flex items-start justify-between">
                                 <div class="flex-1 cursor-pointer group" @click="togglePieza(pieza.IdPieza)">
@@ -235,7 +227,6 @@ onMounted(() => {
                                 </div>
 
                                 <div class="flex items-center gap-3 ml-6">
-                                    <!-- Action Buttons -->
                                     <button @click="openEditModal(pieza)"
                                         class="p-3 text-slate-500 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all duration-300 hover:scale-110">
                                         <Edit class="w-5 h-5" />
@@ -245,7 +236,6 @@ onMounted(() => {
                                         <Trash2 class="w-5 h-5" />
                                     </button>
 
-                                    <!-- Estado Badge -->
                                     <div :class="getEstadoConfig(pieza.estado).color"
                                         class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold border shadow-sm">
                                         <component :is="getEstadoConfig(pieza.estado).icon"
@@ -254,7 +244,6 @@ onMounted(() => {
                                         {{ pieza.estado }}
                                     </div>
 
-                                    <!-- Expand Icon -->
                                     <button @click="togglePieza(pieza.IdPieza)"
                                         class="p-3 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all duration-300">
                                         <ChevronDown class="w-5 h-5 transform transition-transform duration-300"
@@ -264,12 +253,10 @@ onMounted(() => {
                             </div>
                         </div>
 
-                        <!-- Expanded Content -->
                         <Transition name="expand">
                             <div v-if="expandedPiezas[pieza.IdPieza]"
                                 class="border-t border-slate-100 bg-gradient-to-br from-slate-50 to-blue-50 p-6">
                                 <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-                                    <!-- Peso Teórico -->
                                     <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105">
                                         <div class="flex items-center gap-3 mb-3">
                                             <div class="p-2 bg-blue-100 rounded-lg">
@@ -283,7 +270,6 @@ onMounted(() => {
                                         </p>
                                     </div>
 
-                                    <!-- Peso Real -->
                                     <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105">
                                         <div class="flex items-center gap-3 mb-3">
                                             <div class="p-2 bg-emerald-100 rounded-lg">
@@ -298,7 +284,6 @@ onMounted(() => {
                                         </p>
                                     </div>
 
-                                    <!-- Fecha de Registro -->
                                     <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105">
                                         <div class="flex items-center gap-3 mb-3">
                                             <div class="p-2 bg-purple-100 rounded-lg">
@@ -311,7 +296,6 @@ onMounted(() => {
                                         </p>
                                     </div>
 
-                                    <!-- Registrado Por -->
                                     <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105">
                                         <div class="flex items-center gap-3 mb-3">
                                             <div class="p-2 bg-indigo-100 rounded-lg">
@@ -325,7 +309,6 @@ onMounted(() => {
                                     </div>
                                 </div>
 
-                                <!-- Diferencia de Peso -->
                                 <div v-if="pieza.peso_real" class="mt-6 p-6 bg-white rounded-xl border border-slate-200 shadow-sm">
                                     <div class="flex items-center justify-between">
                                         <div class="flex items-center gap-3">
@@ -349,7 +332,6 @@ onMounted(() => {
                     </div>
                 </div>
 
-                <!-- Empty State -->
                 <div v-if="filteredPiezas.length === 0" class="text-center py-16 animate-fade-in">
                     <div class="max-w-md mx-auto">
                         <div class="p-6 bg-gradient-to-br from-slate-100 to-blue-100 rounded-full w-32 h-32 mx-auto mb-6 flex items-center justify-center">
@@ -364,8 +346,6 @@ onMounted(() => {
             </div>
         </div>
 
-        <!-- Modals (Create, Edit, Delete) with improved styling -->
-        <!-- Create Modal -->
         <Transition name="modal">
             <div v-if="showCreateModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
                 <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto">
@@ -413,7 +393,6 @@ onMounted(() => {
             </div>
         </Transition>
 
-        <!-- Edit Modal -->
         <Transition name="modal">
             <div v-if="showEditModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
                 <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto">
@@ -473,7 +452,6 @@ onMounted(() => {
             </div>
         </Transition>
 
-        <!-- Delete Modal -->
         <Transition name="modal">
             <div v-if="showDeleteModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
                 <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full">
@@ -507,7 +485,6 @@ onMounted(() => {
 </template>
 
 <style scoped>
-/* Animations */
 @keyframes fade-in {
     from {
         opacity: 0;
@@ -567,7 +544,6 @@ onMounted(() => {
     animation-fill-mode: both;
 }
 
-/* Expand transition */
 .expand-enter-active,
 .expand-leave-active {
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -588,7 +564,6 @@ onMounted(() => {
     transform: translateY(0);
 }
 
-/* Modal transitions */
 .modal-enter-active,
 .modal-leave-active {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -606,12 +581,10 @@ onMounted(() => {
     transform: scale(1);
 }
 
-/* Smooth transitions */
 .transition-all {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Hover effects */
 .hover\:scale-105:hover {
     transform: scale(1.05);
 }
@@ -620,12 +593,10 @@ onMounted(() => {
     transform: scale(1.1);
 }
 
-/* Glass morphism effects */
 .backdrop-blur-sm {
     backdrop-filter: blur(4px);
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar {
     width: 6px;
 }
@@ -644,18 +615,15 @@ onMounted(() => {
     background: linear-gradient(to bottom, #005a9e, #004b83);
 }
 
-/* Focus styles */
 .focus\:ring-2:focus {
     box-shadow: 0 0 0 2px rgba(0, 112, 194, 0.2);
 }
 
-/* Selection styles */
 ::selection {
     background-color: rgba(0, 112, 194, 0.2);
     color: #005a9e;
 }
 
-/* Responsive grid improvements */
 @media (max-width: 768px) {
     .grid-cols-1.md\:grid-cols-2.xl\:grid-cols-4 {
         grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -677,7 +645,6 @@ onMounted(() => {
     }
 }
 
-/* Estados de las piezas */
 .status-pending {
     @apply bg-navy-100 text-navy-700;
 }
@@ -694,7 +661,6 @@ onMounted(() => {
     @apply bg-red-100 text-red-700;
 }
 
-/* Gradientes y fondos */
 .bg-navy-gradient {
     background: linear-gradient(135deg, #0070c2 0%, #005a9e 100%);
 }
@@ -703,12 +669,10 @@ onMounted(() => {
     background-color: #f0f7ff;
 }
 
-/* Botones */
 .btn-navy {
     @apply bg-navy-600 hover:bg-navy-700 text-white transition-colors duration-200;
 }
 
-/* Bordes y sombras */
 .border-navy {
     border-color: #0070c2;
 }
