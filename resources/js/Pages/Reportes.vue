@@ -47,7 +47,13 @@ const proyectoOptions = computed(() => {
 });
 
 const totalPiezasPendientes = computed(() => {
-    return filteredProyectos.value.reduce((total, proyecto) => total + proyecto.total_pendientes, 0);
+    return filteredProyectos.value.reduce((total, proyecto) => {
+        const pendientes = proyecto.bloques.reduce((bloqueTotal, bloque) => {
+            const piezasPendientes = bloque.piezas.filter(pieza => pieza.estado === 'Pendiente').length;
+            return bloqueTotal + piezasPendientes;
+        }, 0);
+        return total + pendientes;
+    }, 0);
 });
 
 const totalPiezasFabricadas = computed(() => {
@@ -328,13 +334,13 @@ onMounted(() => {
                                                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                                                     </svg>
-                                                    {{ proyecto.bloques.length }} bloques • {{ proyecto.total_pendientes }} piezas pendientes
+                                                    {{ proyecto.bloques.length }} bloques • {{ proyecto.bloques.reduce((total, bloque) => total + bloque.piezas.filter(p => p.estado === 'Pendiente').length, 0) }} piezas pendientes
                                                 </p>
                                             </div>
                                             <div class="flex items-center space-x-3">
-                                                <span :class="getPriorityColor(proyecto.total_pendientes)"
+                                                <span :class="getPriorityColor(proyecto.bloques.reduce((total, bloque) => total + bloque.piezas.filter(p => p.estado === 'Pendiente').length, 0))"
                                                       class="px-4 py-2 rounded-xl text-sm font-semibold border transition-all duration-300 hover:scale-105">
-                                                    {{ proyecto.total_pendientes }} pendientes
+                                                    {{ proyecto.bloques.reduce((total, bloque) => total + bloque.piezas.filter(p => p.estado === 'Pendiente').length, 0) }} pendientes
                                                 </span>
                                                 <svg
                                                     class="w-5 h-5 text-slate-400 transform transition-all duration-300 group-hover:text-cyan-600"
