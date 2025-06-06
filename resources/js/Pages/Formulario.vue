@@ -136,10 +136,8 @@ const registrarPieza = async () => {
             </div>
         </Transition>
 
-        <div class="min-h-screen bg-gradient-to-br from-slate-50 to-cyan-50 py-8 px-4">
+        <div class="min-h-screen bg-gradient-to-br from-navy-50 to-navy-100 py-8 px-4">
             <div class="max-w-6xl mx-auto">
-
-                <!-- Header con animación de entrada -->
                 <div class="bg-white rounded-2xl shadow-xl overflow-hidden transform transition-all duration-500 hover:shadow-2xl animate-fadeInDown">
                     <div class="bg-gradient-to-r from-cyan-600 to-teal-700 px-8 py-6">
                         <h2 class="text-2xl font-semibold text-white flex items-center">
@@ -150,10 +148,8 @@ const registrarPieza = async () => {
                         </h2>
                     </div>
 
-                    <!-- Selection Form con animación de entrada -->
                     <div class="p-8 animate-fadeInUp">
                         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                            <!-- Proyecto Select -->
                             <div class="transform transition-all duration-300 hover:scale-105">
                                 <label for="proyecto" class="block text-sm font-semibold text-slate-700 mb-3">
                                     Proyecto
@@ -182,7 +178,6 @@ const registrarPieza = async () => {
                                 </div>
                             </div>
 
-                            <!-- Bloque Select -->
                             <div class="transform transition-all duration-300 hover:scale-105">
                                 <label for="bloque" class="block text-sm font-semibold text-slate-700 mb-3">
                                     Bloque
@@ -212,7 +207,6 @@ const registrarPieza = async () => {
                                 </div>
                             </div>
 
-                            <!-- Pieza Select -->
                             <div class="transform transition-all duration-300 hover:scale-105">
                                 <label for="pieza" class="block text-sm font-semibold text-slate-700 mb-3">
                                     Pieza
@@ -244,9 +238,7 @@ const registrarPieza = async () => {
                     </div>
                 </div>
 
-                <!-- Details Card -->
                 <div v-if="piezaSeleccionada" class="mt-8 bg-white rounded-2xl shadow-xl overflow-hidden transform transition-all duration-500 ease-out animate-slide-up">
-                    <!-- Details Header -->
                     <div class="bg-gradient-to-r from-teal-600 to-cyan-700 px-8 py-6">
                         <h3 class="text-2xl font-semibold text-white flex items-center">
                             <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -257,9 +249,7 @@ const registrarPieza = async () => {
                     </div>
 
                     <div class="p-8">
-                        <!-- Weight Information Grid -->
                         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 mb-8">
-                            <!-- Peso Teórico -->
                             <div class="bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
                                 <label class="block text-sm font-semibold text-slate-700 mb-3 flex items-center">
                                     <svg class="w-4 h-4 mr-2 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -273,7 +263,6 @@ const registrarPieza = async () => {
                                 <div class="text-sm text-slate-500 mt-1">Peso calculado</div>
                             </div>
 
-                            <!-- Peso Real Input -->
                             <div class="bg-gradient-to-br from-cyan-50 to-teal-50 rounded-xl p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
                                 <label class="block text-sm font-semibold text-slate-700 mb-3 flex items-center">
                                     <svg class="w-4 h-4 mr-2 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -292,7 +281,6 @@ const registrarPieza = async () => {
                                 <div class="text-sm text-slate-500 mt-1">Medición actual</div>
                             </div>
 
-                            <!-- Diferencia -->
                             <div class="md:col-span-2 xl:col-span-1">
                                 <div :class="[
                                     'rounded-xl p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-lg',
@@ -342,7 +330,6 @@ const registrarPieza = async () => {
                             </div>
                         </div>
 
-                        <!-- Action Button -->
                         <div class="flex justify-center">
                             <button
                                 @click="registrarPieza"
@@ -369,7 +356,6 @@ const registrarPieza = async () => {
 </template>
 
 <style scoped>
-/* Animaciones de entrada (copiadas de Proyectos.vue y Usuarios.vue) */
 @keyframes fadeInDown {
     from {
         opacity: 0;

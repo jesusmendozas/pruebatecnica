@@ -138,32 +138,14 @@ const formatDate = (dateString) => {
 };
 
 onMounted(() => {
-    console.log('Componente Piezas montado', {
-        piezas: props.piezas,
-        bloques: props.bloques
-    });
+    // Remove debug console.log
 });
 </script>
 
 <template>
     <AppLayout title="Piezas">
-        <div class="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 py-8">
+        <div class="min-h-screen bg-gradient-to-br from-navy-50 to-navy-100 py-8">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <!-- Debug Info -->
-                <div v-if="!piezas || !bloques" class="bg-red-50 border border-red-200 text-red-800 px-6 py-4 rounded-xl shadow-sm mb-6 animate-fade-in" role="alert">
-                    <div class="flex items-center">
-                        <div class="flex-shrink-0">
-                            <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
-                            </svg>
-                        </div>
-                        <div class="ml-3">
-                            <strong class="font-semibold">Error:</strong>
-                            <span class="ml-1">No se pudieron cargar los datos necesarios.</span>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Header Section -->
                 <div class="mb-8 animate-slide-down">
                     <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-slate-200/50 p-8">
@@ -231,7 +213,7 @@ onMounted(() => {
                     <div v-for="(pieza, index) in filteredPiezas" :key="pieza.IdPieza"
                         class="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg border border-slate-200/50 hover:shadow-xl transition-all duration-500 ease-out transform hover:-translate-y-1 animate-fade-in-up"
                         :style="{ animationDelay: `${index * 100}ms` }">
-                        
+
                         <!-- Card Header -->
                         <div class="p-6">
                             <div class="flex items-start justify-between">
@@ -262,7 +244,7 @@ onMounted(() => {
                                         class="p-3 text-slate-500 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all duration-300 hover:scale-110">
                                         <Trash2 class="w-5 h-5" />
                                     </button>
-                                    
+
                                     <!-- Estado Badge -->
                                     <div :class="getEstadoConfig(pieza.estado).color"
                                         class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold border shadow-sm">
@@ -273,7 +255,7 @@ onMounted(() => {
                                     </div>
 
                                     <!-- Expand Icon -->
-                                    <button @click="togglePieza(pieza.IdPieza)" 
+                                    <button @click="togglePieza(pieza.IdPieza)"
                                         class="p-3 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all duration-300">
                                         <ChevronDown class="w-5 h-5 transform transition-transform duration-300"
                                             :class="{ 'rotate-180': expandedPiezas[pieza.IdPieza] }" />
@@ -502,7 +484,7 @@ onMounted(() => {
                             </div>
                             <h3 class="text-2xl font-bold text-slate-900 mb-2">Eliminar Pieza</h3>
                             <p class="text-slate-600 text-lg">
-                                ¿Estás seguro de que deseas eliminar la pieza 
+                                ¿Estás seguro de que deseas eliminar la pieza
                                 <span class="font-semibold text-slate-900">"{{ selectedPieza?.pieza }}"</span>?
                             </p>
                             <p class="text-sm text-red-600 mt-2">Esta acción no se puede deshacer.</p>

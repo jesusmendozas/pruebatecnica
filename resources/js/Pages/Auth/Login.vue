@@ -1,13 +1,8 @@
 <script setup>
 import { Head, Link, useForm } from '@inertiajs/vue3';
 import { ref, onMounted } from 'vue';
-import AuthenticationCard from '@/Components/AuthenticationCard.vue';
-import AuthenticationCardLogo from '@/Components/AuthenticationCardLogo.vue';
-import Checkbox from '@/Components/Checkbox.vue';
 import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
+
 
 defineProps({
     canResetPassword: Boolean,
@@ -39,12 +34,17 @@ onMounted(() => {
 <template>
     <Head title="COTECMAR - Sistema de Acceso" />
 
-    <div class="min-h-screen bg-slate-50">
+    <div class="min-h-screen bg-slate-50 relative">
+        <!-- Background Image -->
+        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('https://mundonoticias.com.co/wp-content/uploads/2024/04/cotecmar.jpg');">
+            <div class="absolute inset-0 bg-black/50"></div>
+        </div>
+
         <!-- Header con patrón naval -->
-        <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900"></div>
-        
+        <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 z-10"></div>
+
         <!-- Patrón de fondo sutil -->
-        <div class="absolute inset-0 opacity-30">
+        <div class="absolute inset-0 opacity-30 z-0">
             <svg width="60" height="60" viewBox="0 0 60 60" class="absolute inset-0 w-full h-full">
                 <defs>
                     <pattern id="naval-pattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
@@ -57,7 +57,7 @@ onMounted(() => {
             </svg>
         </div>
 
-        <div class="relative min-h-screen flex items-center justify-center px-4">
+        <div class="relative min-h-screen flex items-center justify-center px-4 z-20">
             <div class="w-full max-w-6xl">
                 <div class="bg-white shadow-2xl border border-slate-200 overflow-hidden">
                     <div class="flex min-h-[600px]">
@@ -65,18 +65,18 @@ onMounted(() => {
                         <div class="hidden lg:flex lg:w-2/3 bg-gradient-to-br from-slate-800 to-slate-900 relative">
                             <!-- Elemento decorativo naval -->
                             <div class="absolute inset-0 bg-gradient-to-r from-blue-900/20 to-transparent"></div>
-                            
+
                             <!-- Líneas decorativas -->
                             <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-400 to-transparent"></div>
                             <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-400 to-transparent"></div>
-                            
+
                             <div class="relative z-10 flex flex-col justify-center px-16 py-12 text-white">
                                 <!-- Logo COTECMAR -->
                                 <div class="mb-12">
                                     <div class="w-20 h-20 bg-white rounded-lg shadow-xl flex items-center justify-center mb-6">
-                                        <img 
-                                            src="https://www.cotecmar.com/sites/default/files/media/imagenes/2023-12/CotecmarLogo.png" 
-                                            alt="COTECMAR" 
+                                        <img
+                                            src="https://www.cotecmar.com/sites/default/files/media/imagenes/2023-12/CotecmarLogo.png"
+                                            alt="COTECMAR"
                                             class="w-16 h-16 object-contain"
                                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"
                                         />
@@ -89,13 +89,13 @@ onMounted(() => {
                                     </h1>
                                     <div class="w-24 h-1 bg-blue-400 mb-6"></div>
                                     <p class="text-slate-300 text-lg leading-relaxed">
-                                        Corporación de Ciencia y Tecnología para el Desarrollo 
+                                        Corporación de Ciencia y Tecnología para el Desarrollo
                                         de la Industria Naval, Marítima y Fluvial
                                     </p>
                                 </div>
 
                                 <!-- Características del sistema -->
-                                
+
                             </div>
                         </div>
 
@@ -104,9 +104,9 @@ onMounted(() => {
                             <!-- Header del formulario -->
                             <div class="px-8 py-6 bg-slate-50 border-b border-slate-200">
                                 <div class="lg:hidden mb-4">
-                                    <img 
-                                        src="https://www.cotecmar.com/sites/default/files/media/imagenes/2023-12/CotecmarLogo.png" 
-                                        alt="COTECMAR" 
+                                    <img
+                                        src="https://www.cotecmar.com/sites/default/files/media/imagenes/2023-12/CotecmarLogo.png"
+                                        alt="COTECMAR"
                                         class="w-12 h-12 object-contain mx-auto"
                                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"
                                     />
